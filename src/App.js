@@ -1,4 +1,6 @@
 import "./styles.css";
+// import "./App.css";
+import { useState } from "react";
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { useLoader } from "@react-three/fiber";
@@ -12,6 +14,7 @@ import {
     Environment,
     OrbitControls,
     MeshReflectorMaterial,
+    Html,
 } from "@react-three/drei";
 
 // window.addEventListener("resize", () =>
@@ -31,7 +34,17 @@ const Scene = () => {
     });
 
     console.log(obj);
-    return <primitive object={obj} scale={1.4} rotation={[250, 0, 150]} />;
+    return (
+        <primitive
+            object={obj}
+            scale={3.5}
+            rotation={[
+                (-Math.PI / 180) * (90 - 1.333),
+                (-Math.PI / 180) * -0.1,
+                (-Math.PI / 180) * 90,
+            ]}
+        />
+    );
 };
 
 function Floor(props) {
@@ -47,28 +60,76 @@ function Floor(props) {
                 mixStrength={3}
                 depthScale={1}
                 minDepthThreshold={0.85}
-                metalness={0}
-                roughness={1}
+                metalness={0.5}
+                roughness={0.5}
             />
         </mesh>
     );
 }
 
 export default function App() {
+    const [state, setState] = useState("");
+
     return (
-        <div className="App">
+        <div
+            className="App"
+            style={{ backgroundColor: "black" }}
+            onClick={() => {
+                setState("play");
+            }}
+        >
+            <div
+                style={{
+                    fontFamily: "sans-serif",
+                    color: "white",
+                    position: "absolute",
+                    left: "48.15vw",
+                    top: "3vh",
+                    fontSize: "17px",
+                }}
+            >
+                Endangered
+            </div>
             <Canvas
             // camera={{ position: [0, 0, 7],
             // // near: 5, far: 15
             //  }}
             >
-                <ambientLight intensity={0.5} />
+                <ambientLight intensity={0.3} />
                 <spotLight position={[0, 0, 0]} angle={0.3} />
+                <mesh>
+                    <Html scale={1} position={[-5.9, 1.55, 0]}>
+                        <div
+                            style={{
+                                color: "white",
+                                fontSize: "216px",
+                                // fontSize: "20px",
+                                width: "86vw",
+                                lineHeight: 1,
+                            }}
+                        >
+                            RHINO - CLOSE <br /> TO EXTINCTION
+                        </div>
+                        <div style={{ marginTop: "13.9vh" }}>
+                            <button className="btn">EXPLORE</button>
+                        </div>
+                    </Html>
+                </mesh>
                 <Suspense fallback={null}>
-                    <Scene />
+                    <mesh position={[0, -1.5, 1]}>
+                        <Scene />
+                    </mesh>
                     {/* <OrbitControls /> */}
-                    {/* <Environment preset="sunset" background /> */}
-                    {/* <Floor position={[0, -15, 0]} rotation={[-Math.PI / 2, 0, 0]} /> */}
+                    <Physics>
+                        <Floor
+                            position={[0, -1.5, 0]}
+                            rotation={[
+                                (-Math.PI / 180) * (90 - 1.333),
+                                (-Math.PI / 180) * -0.5,
+                                (-Math.PI / 180) * 30,
+                            ]}
+                        />
+                    </Physics>
                 </Suspense>
             </Canvas>
         </div>

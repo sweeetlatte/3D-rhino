@@ -1,11 +1,25 @@
 .App {
-  font-family: sans-serif;
-  text-align: center;
-  height: 100vh;
-  width: 100vw;
+    font-family: serif;
+    text-align: center;
+    height: 100vh;
+    width: 100vw;
 }
 
 body {
-  padding: 0;
-  margin: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.btn {
+    padding: 20px 56px;
+    border-radius: 50px;
+    font-size: 27px;
+    border: 1px solid white;
+    background-color: rgba(76, 175, 80, 0);
+    color: white;
+}
+
+.btn:hover {
+    background-color: white;
+    color: black;
 }
