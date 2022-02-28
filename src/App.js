@@ -68,14 +68,14 @@ function Floor(props) {
 }
 
 export default function App() {
-    const [state, setState] = useState("");
+    const [z, setZ] = useState(1);
 
     return (
         <div
             className="App"
             style={{ backgroundColor: "black" }}
             onClick={() => {
-                setState("play");
+                setZ(3);
             }}
         >
             <div
@@ -108,7 +108,12 @@ export default function App() {
                                 lineHeight: 1,
                             }}
                         >
-                            RHINO - CLOSE <br /> TO EXTINCTION
+                            <div style={{display: "flex", justifyContent: "space-between"}}>
+                                <div>RHINO</div>
+                                <div>—</div>
+                                <div>CLOSE</div>
+                            </div>
+                            <div>TO EXTINCTION</div>
                         </div>
                         <div style={{ marginTop: "13.9vh" }}>
                             <button className="btn">EXPLORE</button>
@@ -116,7 +121,7 @@ export default function App() {
                     </Html>
                 </mesh>
                 <Suspense fallback={null}>
-                    <mesh position={[0, -1.5, 1]}>
+                    <mesh position={[0, -1.5, z]}>
                         <Scene />
                     </mesh>
                     {/* <OrbitControls /> */}
