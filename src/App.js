@@ -86,6 +86,7 @@ export default function App() {
                     left: "48.15vw",
                     top: "3vh",
                     fontSize: "17px",
+                    display: z === 3 ? "none" : "",
                 }}
             >
                 Endangered
@@ -108,15 +109,50 @@ export default function App() {
                                 lineHeight: 1,
                             }}
                         >
-                            <div style={{display: "flex", justifyContent: "space-between"}}>
-                                <div>RHINO</div>
+                            <div
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                }}
+                            >
+                                <div className={z === 3 ? "wavy" : ""}>
+                                    <span style={{ "--i": 5 }}>R</span>
+                                    <span style={{ "--i": 1 }}>H</span>
+                                    <span style={{ "--i": 0 }}>I</span>
+                                    <span style={{ "--i": 1 }}>N</span>
+                                    <span style={{ "--i": 5 }}>O</span>
+                                </div>
                                 <div>—</div>
-                                <div>CLOSE</div>
+                                <div className={z === 3 ? "wavy" : ""}>
+                                    <span style={{ "--i": 5 }}>C</span>
+                                    <span style={{ "--i": 2 }}>L</span>
+                                    <span style={{ "--i": 1 }}>O</span>
+                                    <span style={{ "--i": 2 }}>S</span>
+                                    <span style={{ "--i": 5 }}>E</span>
+                                </div>
                             </div>
-                            <div>TO EXTINCTION</div>
+                            <div className={z === 3 ? "wavy" : ""}>
+                                <span style={{ "--i": 6 }}>T</span>
+                                <span style={{ "--i": 5.5 }}>O </span>
+                                <span style={{ "--i": 4.5 }}>E</span>
+                                <span style={{ "--i": 4 }}>X</span>
+                                <span style={{ "--i": 3.5 }}>T</span>
+                                <span style={{ "--i": 3 }}>I</span>
+                                <span style={{ "--i": 3.5 }}>N</span>
+                                <span style={{ "--i": 4 }}>C</span>
+                                <span style={{ "--i": 4.5 }}>T</span>
+                                <span style={{ "--i": 5 }}>I</span>
+                                <span style={{ "--i": 5.5 }}>O</span>
+                                <span style={{ "--i": 6 }}>N</span>
+                            </div>
                         </div>
-                        <div style={{ marginTop: "13.9vh" }}>
-                            <button className="btn">EXPLORE</button>
+                        <div
+                            className={z === 3 ? "wavy" : ""}
+                            style={{ marginTop: "13.9vh" }}
+                        >
+                            <button className="btn" style={{ "--i": 2 }}>
+                                EXPLORE
+                            </button>
                         </div>
                     </Html>
                 </mesh>
