@@ -189,7 +189,7 @@ export default function App() {
                             style={{ marginTop: "13.9vh" }}
                         >
                             <button
-                                className="btn"
+                                className="btn text-[22px] 2xl:text-[27px]"
                                 style={{ "--i": 2 }}
                                 onClick={() => {
                                     setZ(3);
