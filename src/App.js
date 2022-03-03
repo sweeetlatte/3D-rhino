@@ -1,5 +1,5 @@
 import "./styles.css";
-// import "./App.css";
+import "./input.css";
 import { useState, useEffect } from "react";
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
@@ -15,7 +15,9 @@ import {
     OrbitControls,
     MeshReflectorMaterial,
     Html,
+    useTexture,
 } from "@react-three/drei";
+import { TextureLoader } from "three/src/loaders/TextureLoader";
 
 // window.addEventListener("resize", () =>
 //     render(<mesh />, document.querySelector("canvas"), {
@@ -46,6 +48,37 @@ const Scene = () => {
         />
     );
 };
+
+const name = (type) => `Marble016_1K_${type}.jpg`;
+
+function FloorTexture() {
+    const [colorMap, displacementMap, normalMap, roughnessMap, aoMap] =
+        useLoader(TextureLoader, [
+            name("Color"),
+            name("Displacement"),
+            name("Normal"),
+            name("Roughness"),
+            name("AmbientOcclusion"),
+        ]);
+    return (
+        <>
+            <ambientLight intensity={0.2} />
+            <directionalLight />
+            <mesh>
+                {/* Width and height segments for displacementMap */}
+                <sphereBufferGeometry args={[1, 100, 100]} />
+                <meshStandardMaterial
+                    displacementScale={0.2}
+                    map={colorMap}
+                    displacementMap={displacementMap}
+                    normalMap={normalMap}
+                    roughnessMap={roughnessMap}
+                    aoMap={aoMap}
+                />
+            </mesh>
+        </>
+    );
+}
 
 function Floor(props) {
     const [ref] = usePlane(() => ({ type: "Static", ...props }));
@@ -95,9 +128,9 @@ export default function App() {
                 <mesh>
                     <Html scale={1} position={[-5.9, 1.55, 0]}>
                         <div
+                            className="text-[151px] 2xl:text-[216px]"
                             style={{
                                 color: "white",
-                                fontSize: "216px",
                                 // fontSize: "20px",
                                 width: "86vw",
                                 lineHeight: 1,
