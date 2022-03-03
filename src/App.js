@@ -1,6 +1,6 @@
 import "./styles.css";
 // import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { useLoader } from "@react-three/fiber";
@@ -71,13 +71,7 @@ export default function App() {
     const [z, setZ] = useState(1);
 
     return (
-        <div
-            className="App"
-            style={{ backgroundColor: "black" }}
-            onClick={() => {
-                setZ(3);
-            }}
-        >
+        <div className="App" style={{ backgroundColor: "black" }}>
             <div
                 style={{
                     fontFamily: "sans-serif",
@@ -113,17 +107,28 @@ export default function App() {
                                 style={{
                                     display: "flex",
                                     justifyContent: "space-between",
+                                    transition: "justifyContent 1s ease-in-out",
                                 }}
                             >
-                                <div className={z === 3 ? "wavy" : ""}>
+                                <div
+                                    className={
+                                        z === 3 ? "wavy close-reverse" : ""
+                                    }
+                                >
                                     <span style={{ "--i": 5 }}>R</span>
                                     <span style={{ "--i": 1 }}>H</span>
                                     <span style={{ "--i": 0 }}>I</span>
                                     <span style={{ "--i": 1 }}>N</span>
                                     <span style={{ "--i": 5 }}>O</span>
                                 </div>
-                                <div>—</div>
-                                <div className={z === 3 ? "wavy" : ""}>
+                                <div
+                                    className={
+                                        z === 3 ? "dash shorten-dash" : "dash"
+                                    }
+                                >
+                                    —
+                                </div>
+                                <div className={z === 3 ? "wavy close" : ""}>
                                     <span style={{ "--i": 5 }}>C</span>
                                     <span style={{ "--i": 2 }}>L</span>
                                     <span style={{ "--i": 1 }}>O</span>
@@ -150,14 +155,21 @@ export default function App() {
                             className={z === 3 ? "wavy" : ""}
                             style={{ marginTop: "13.9vh" }}
                         >
-                            <button className="btn" style={{ "--i": 2 }}>
+                            <button
+                                className="btn"
+                                style={{ "--i": 2 }}
+                                onClick={() => {
+                                    setZ(3);
+                                }}
+                            >
                                 EXPLORE
                             </button>
                         </div>
                     </Html>
                 </mesh>
                 <Suspense fallback={null}>
-                    <mesh position={[0, -1.5, z]}>
+                    {/* change 1 to z when everything is done */}
+                    <mesh position={[0, -1.5, 1]}>
                         <Scene />
                     </mesh>
                     {/* <OrbitControls /> */}
