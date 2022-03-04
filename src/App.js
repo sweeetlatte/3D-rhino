@@ -19,6 +19,8 @@ import {
     SpotLight,
 } from "@react-three/drei";
 import { TextureLoader } from "three/src/loaders/TextureLoader";
+import { useSpring } from "@react-spring/core";
+import { a } from "@react-spring/three";
 
 // window.addEventListener("resize", () =>
 //     render(<mesh />, document.querySelector("canvas"), {
@@ -36,17 +38,44 @@ const Scene = () => {
         loader.setMaterials(materials);
     });
 
-    console.log(obj);
+    const [active, setActive] = useState(0);
+
+    const { spring } = useSpring({
+        spring: active,
+        config: {
+            mass: 5,
+            tension: 200, //spring energetic load: the bigger, the faster
+            friction: 50,
+            precision: 0.0025,
+        },
+    });
+
+    const scale = spring.to([0, 1], [0, 3]);
+    const rotation = spring.to([0, 1], [0, 1]);
+
     return (
-        <primitive
-            object={obj}
-            scale={3.5}
-            rotation={[
-                (-Math.PI / 180) * (90 - 1.333),
-                (-Math.PI / 180) * -0.1,
-                (-Math.PI / 180) * 90,
-            ]}
-        />
+        <>
+            <a.group
+            // position-y={scale}
+            >
+                <a.mesh
+                    rotation-y={rotation}
+                    // position-x={scale}
+                    position-z={scale}
+                    onClick={() => setActive(Number(!active))}
+                >
+                    <primitive
+                        object={obj}
+                        scale={3.5}
+                        rotation={[
+                            (-Math.PI / 180) * (90 - 1.333),
+                            (-Math.PI / 180) * -0.1,
+                            (-Math.PI / 180) * 90,
+                        ]}
+                    />
+                </a.mesh>
+            </a.group>
+        </>
     );
 };
 
@@ -125,7 +154,7 @@ export default function App() {
                     shadow-camera-near={0.1}
                     shadow-camera-far={20}
                 /> */}
-                <mesh>
+                {/* <mesh>
                     <Html scale={1} position={[-7, 1.55, 0]}>
                         <div
                             className="text-[151px] 2xl:text-[216px]"
@@ -193,13 +222,14 @@ export default function App() {
                                 style={{ "--i": 2 }}
                                 onClick={() => {
                                     setZ(3);
+                                    // setActive(Number(!active));
                                 }}
                             >
                                 EXPLORE
                             </button>
                         </div>
                     </Html>
-                </mesh>
+                </mesh> */}
                 <Suspense fallback={null}>
                     {/* change 1 to z when everything is done */}
                     <mesh position={[0, -1.5, 1]}>
