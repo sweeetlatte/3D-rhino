@@ -16,6 +16,7 @@ import {
     MeshReflectorMaterial,
     Html,
     useTexture,
+    SpotLight,
 } from "@react-three/drei";
 import { TextureLoader } from "three/src/loaders/TextureLoader";
 
@@ -51,7 +52,8 @@ const Scene = () => {
 
 const name = (type) => `Marble016_1K_${type}.jpg`;
 
-function FloorTexture() {
+function Floor(props) {
+    const [ref] = usePlane(() => ({ type: "Static", ...props }));
     const [colorMap, displacementMap, normalMap, roughnessMap, aoMap] =
         useLoader(TextureLoader, [
             name("Color"),
@@ -60,32 +62,11 @@ function FloorTexture() {
             name("Roughness"),
             name("AmbientOcclusion"),
         ]);
-    return (
-        <>
-            <ambientLight intensity={0.2} />
-            <directionalLight />
-            <mesh>
-                {/* Width and height segments for displacementMap */}
-                <sphereBufferGeometry args={[1, 100, 100]} />
-                <meshStandardMaterial
-                    displacementScale={0.2}
-                    map={colorMap}
-                    displacementMap={displacementMap}
-                    normalMap={normalMap}
-                    roughnessMap={roughnessMap}
-                    aoMap={aoMap}
-                />
-            </mesh>
-        </>
-    );
-}
 
-function Floor(props) {
-    const [ref] = usePlane(() => ({ type: "Static", ...props }));
     return (
         <mesh ref={ref} receiveShadow>
             <planeGeometry args={[100, 100]} />
-            <MeshReflectorMaterial
+            {/* <MeshReflectorMaterial
                 color="#878790"
                 blur={[400, 400]}
                 resolution={1024}
@@ -95,6 +76,14 @@ function Floor(props) {
                 minDepthThreshold={0.85}
                 metalness={0.5}
                 roughness={0.5}
+            /> */}
+            <meshStandardMaterial
+                displacementScale={0.2}
+                map={colorMap}
+                displacementMap={displacementMap}
+                normalMap={normalMap}
+                roughnessMap={roughnessMap}
+                aoMap={aoMap}
             />
         </mesh>
     );
@@ -119,14 +108,25 @@ export default function App() {
                 Endangered
             </div>
             <Canvas
-            // camera={{ position: [0, 0, 7],
-            // // near: 5, far: 15
-            //  }}
+                camera={{
+                    position: [0, 0, 6],
+                    left: 0,
+                    right: 0,
+                    far: 10,
+                }}
             >
-                <ambientLight intensity={0.3} />
-                <spotLight position={[0, 0, 0]} angle={0.3} />
+                {/* <directionalLight insensity={1} position={[-8, 3, 5]} /> */}
+                {/* <ambientLight intensity={0.3} /> */}
+                {/* <spotLight position={[0, 0, 0]} angle={0.3} /> */}
+                {/* <directionalLight
+                    castShadow
+                    position={[0, 10, 0]}
+                    insensity={1.5}
+                    shadow-camera-near={0.1}
+                    shadow-camera-far={20}
+                /> */}
                 <mesh>
-                    <Html scale={1} position={[-5.9, 1.55, 0]}>
+                    <Html scale={1} position={[-7, 1.55, 0]}>
                         <div
                             className="text-[151px] 2xl:text-[216px]"
                             style={{
@@ -206,6 +206,48 @@ export default function App() {
                         <Scene />
                     </mesh>
                     {/* <OrbitControls /> */}
+                    <SpotLight
+                        position={[-8, -0.5, 9]}
+                        castShadow
+                        // target={target}
+                        penumbra={1}
+                        radiusTop={5}
+                        radiusBottom={30}
+                        distance={13.5}
+                        angle={0.55}
+                        attenuation={20}
+                        anglePower={5}
+                        intensity={2}
+                        opacity={0.2}
+                    />
+                    <SpotLight
+                        position={[-2.5, -0.1, 4]}
+                        castShadow
+                        // target={target}
+                        penumbra={1}
+                        radiusTop={5}
+                        radiusBottom={5}
+                        distance={5}
+                        angle={0.55}
+                        attenuation={30}
+                        anglePower={5}
+                        intensity={2}
+                        opacity={0.2}
+                    />
+                    <SpotLight
+                        position={[3, 3, 3]}
+                        castShadow
+                        // target={target}
+                        penumbra={1}
+                        radiusTop={5}
+                        radiusBottom={5}
+                        distance={5}
+                        angle={0.15}
+                        attenuation={30}
+                        anglePower={5}
+                        intensity={2}
+                        opacity={0.2}
+                    />
                     <Physics>
                         <Floor
                             position={[0, -1.5, 0]}
@@ -214,8 +256,10 @@ export default function App() {
                                 (-Math.PI / 180) * -0.5,
                                 (-Math.PI / 180) * 30,
                             ]}
+                            args={[10, 10]}
                         />
                     </Physics>
+                    {/* <fog attach="fog" args={['#202020', 5, 20]} /> */}
                 </Suspense>
             </Canvas>
         </div>
