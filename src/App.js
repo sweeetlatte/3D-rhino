@@ -143,6 +143,12 @@ export default function App() {
     const [z, setZ] = useState(1);
     const [active, setActive] = useState(0);
 
+    function delayAnimate() {
+        setTimeout(function () {
+            setActive(Number(!active));
+        }, 2400);
+    }
+
     return (
         <div className="App" style={{ backgroundColor: "black" }}>
             <div
@@ -182,7 +188,6 @@ export default function App() {
                             className="text-[151px] 2xl:text-[216px]"
                             style={{
                                 color: "white",
-                                // fontSize: "20px",
                                 width: "86vw",
                                 lineHeight: 1,
                             }}
@@ -191,7 +196,6 @@ export default function App() {
                                 style={{
                                     display: "flex",
                                     justifyContent: "space-between",
-                                    transition: "justifyContent 1s ease-in-out",
                                 }}
                             >
                                 <div
@@ -244,7 +248,7 @@ export default function App() {
                                 style={{ "--i": 2 }}
                                 onClick={() => {
                                     setZ(3);
-                                    setActive(Number(!active));
+                                    delayAnimate();
                                 }}
                             >
                                 EXPLORE
@@ -260,7 +264,7 @@ export default function App() {
                     {/* <OrbitControls /> */}
                     <SpotLight
                         position={[-8, -0.5, 9]}
-                        castShadow
+                        castShadow={true}
                         // target={target}
                         penumbra={1}
                         radiusTop={5}
@@ -274,7 +278,7 @@ export default function App() {
                     />
                     <SpotLight
                         position={[-2.5, -0.1, 4]}
-                        castShadow
+                        castShadow={true}
                         // target={target}
                         penumbra={1}
                         radiusTop={5}
@@ -288,7 +292,7 @@ export default function App() {
                     />
                     <SpotLight
                         position={[3, 3, 3]}
-                        castShadow
+                        castShadow={true}
                         // target={target}
                         penumbra={1}
                         radiusTop={5}
