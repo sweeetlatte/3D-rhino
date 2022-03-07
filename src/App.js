@@ -142,11 +142,15 @@ function Floor(props) {
 export default function App() {
     const [z, setZ] = useState(1);
     const [active, setActive] = useState(0);
+    const [display, setDisplay] = useState("hidden");
 
     function delayAnimate() {
         setTimeout(function () {
             setActive(Number(!active));
         }, 2400);
+        setTimeout(function () {
+            setDisplay("block");
+        }, 3200);
     }
 
     return (
@@ -164,6 +168,7 @@ export default function App() {
             >
                 Endangered
             </div>
+
             <Canvas
                 camera={{
                     position: [0, 0, 6],
@@ -256,6 +261,16 @@ export default function App() {
                         </div>
                     </Html>
                 </mesh>
+                <mesh>
+                    <Html>
+                        <div className={`${display}`}>
+                            <div className="bg-white rounded-full absolute w-[54px] h-[54px] flex justify-center items-center text-5xl top-5 left-[-33.75rem]">+</div>
+                            <div className="bg-white rounded-full absolute w-[54px] h-[54px] flex justify-center items-center text-5xl top-[-14.75rem] left-[-16.75rem]">+</div>
+                            <div className="bg-white rounded-full absolute w-[54px] h-[54px] flex justify-center items-center text-5xl top-[-7.75rem] left-[-0.75rem]">+</div>
+                            <div className="bg-white rounded-full absolute w-[54px] h-[54px] flex justify-center items-center text-5xl top-[-24.75rem] left-[32.25rem]">+</div>
+                        </div>
+                    </Html>
+                </mesh>
                 <Suspense fallback={null}>
                     {/* change 1 to z when everything is done */}
                     <mesh position={[0, -1.5, 1]}>
@@ -316,7 +331,6 @@ export default function App() {
                             active={active}
                         />
                     </Physics>
-                    {/* <fog attach="fog" args={['#202020', 5, 20]} /> */}
                 </Suspense>
             </Canvas>
         </div>
