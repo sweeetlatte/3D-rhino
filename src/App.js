@@ -31,14 +31,12 @@ import { a } from "@react-spring/three";
 
 THREE.DefaultLoadingManager.addHandler(/\.dds$/i, new DDSLoader());
 
-const Scene = () => {
+const Scene = ({ active, setActive }) => {
     const materials = useLoader(MTLLoader, "rhino.mtl");
     const obj = useLoader(OBJLoader, "rhino.obj", (loader) => {
         materials.preload();
         loader.setMaterials(materials);
     });
-
-    const [active, setActive] = useState(0);
 
     const { spring } = useSpring({
         spring: active,
@@ -54,34 +52,34 @@ const Scene = () => {
     const rotation = spring.to([0, 1], [0, 1]);
 
     return (
-        <>
-            <a.group
-            // position-y={scale}
+        <a.group
+        // position-y={scale}
+        >
+            <a.mesh
+                rotation-y={rotation}
+                // position-x={scale}
+                position-z={scale}
+            // onClick={() => setActive(0)}
             >
-                <a.mesh
-                    rotation-y={rotation}
-                    // position-x={scale}
-                    position-z={scale}
-                    onClick={() => setActive(Number(!active))}
-                >
-                    <primitive
-                        object={obj}
-                        scale={3.5}
-                        rotation={[
-                            (-Math.PI / 180) * (90 - 1.333),
-                            (-Math.PI / 180) * -0.1,
-                            (-Math.PI / 180) * 90,
-                        ]}
-                    />
-                </a.mesh>
-            </a.group>
-        </>
+                <primitive
+                    object={obj}
+                    scale={3.5}
+                    rotation={[
+                        (-Math.PI / 180) * (90 - 1.333),
+                        (-Math.PI / 180) * -0.1,
+                        (-Math.PI / 180) * 90,
+                    ]}
+                />
+            </a.mesh>
+        </a.group>
     );
 };
 
 const name = (type) => `Marble016_1K_${type}.jpg`;
 
 function Floor(props) {
+    const { active } = props;
+
     const [ref] = usePlane(() => ({ type: "Static", ...props }));
     const [colorMap, displacementMap, normalMap, roughnessMap, aoMap] =
         useLoader(TextureLoader, [
@@ -92,10 +90,31 @@ function Floor(props) {
             name("AmbientOcclusion"),
         ]);
 
+    const { spring } = useSpring({
+        spring: active,
+        config: {
+            mass: 5,
+            tension: 200, //spring energetic load: the bigger, the faster
+            friction: 50,
+            precision: 0.0025,
+        },
+    });
+
+    const scale = spring.to([0, 1], [0, 3]);
+    const rotation = spring.to([0, 1], [0, 1]);
+
     return (
-        <mesh ref={ref} receiveShadow>
-            <planeGeometry args={[100, 100]} />
-            {/* <MeshReflectorMaterial
+        <a.group
+        // position-y={scale}
+        >
+            <a.mesh
+                rotation-y={rotation}
+                // position-x={scale}
+                position-z={scale}
+            >
+                <mesh ref={ref} receiveShadow>
+                    <planeGeometry args={[100, 100]} />
+                    {/* <MeshReflectorMaterial
                 color="#878790"
                 blur={[400, 400]}
                 resolution={1024}
@@ -106,20 +125,23 @@ function Floor(props) {
                 metalness={0.5}
                 roughness={0.5}
             /> */}
-            <meshStandardMaterial
-                displacementScale={0.2}
-                map={colorMap}
-                displacementMap={displacementMap}
-                normalMap={normalMap}
-                roughnessMap={roughnessMap}
-                aoMap={aoMap}
-            />
-        </mesh>
+                    <meshStandardMaterial
+                        displacementScale={0.2}
+                        map={colorMap}
+                        displacementMap={displacementMap}
+                        normalMap={normalMap}
+                        roughnessMap={roughnessMap}
+                        aoMap={aoMap}
+                    />
+                </mesh>
+            </a.mesh>
+        </a.group>
     );
 }
 
 export default function App() {
     const [z, setZ] = useState(1);
+    const [active, setActive] = useState(0);
 
     return (
         <div className="App" style={{ backgroundColor: "black" }}>
@@ -154,7 +176,7 @@ export default function App() {
                     shadow-camera-near={0.1}
                     shadow-camera-far={20}
                 /> */}
-                {/* <mesh>
+                <mesh>
                     <Html scale={1} position={[-7, 1.55, 0]}>
                         <div
                             className="text-[151px] 2xl:text-[216px]"
@@ -222,18 +244,18 @@ export default function App() {
                                 style={{ "--i": 2 }}
                                 onClick={() => {
                                     setZ(3);
-                                    // setActive(Number(!active));
+                                    setActive(Number(!active));
                                 }}
                             >
                                 EXPLORE
                             </button>
                         </div>
                     </Html>
-                </mesh> */}
+                </mesh>
                 <Suspense fallback={null}>
                     {/* change 1 to z when everything is done */}
                     <mesh position={[0, -1.5, 1]}>
-                        <Scene />
+                        <Scene setActive={setActive} active={active} />
                     </mesh>
                     {/* <OrbitControls /> */}
                     <SpotLight
@@ -287,6 +309,7 @@ export default function App() {
                                 (-Math.PI / 180) * 30,
                             ]}
                             args={[10, 10]}
+                            active={active}
                         />
                     </Physics>
                     {/* <fog attach="fog" args={['#202020', 5, 20]} /> */}
