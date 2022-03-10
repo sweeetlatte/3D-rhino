@@ -8,6 +8,10 @@ module.exports = {
             "2xl": "1920px",
             // => @media (min-width: 1920px) { ... }
         },
+        fontFamily: {
+            'sans': ['sans-serif'],
+            title: "Playfair Display",
+        },
     },
     plugins: [],
 };

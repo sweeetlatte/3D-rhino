@@ -117,3 +117,17 @@ body {
         opacity: 1;
     }
 }
+
+@keyframes slideLeft-2 {
+    0% {
+        transform: translateX(43.9vw);
+    }
+    100% {
+        transform: translateX(0vw);
+    }
+}
+
+.slide-left-2 {
+    animation: slideLeft-2 2000ms;
+    animation-fill-mode: both;
+}

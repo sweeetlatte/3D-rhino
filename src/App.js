@@ -1,15 +1,16 @@
 import "./styles.css";
 import "./input.css";
 import { useState, useEffect } from "react";
+import { Suspense } from "react";
 import * as THREE from "three";
-import { Canvas } from "@react-three/fiber";
-import { useLoader } from "@react-three/fiber";
+import { DDSLoader } from "three-stdlib";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader";
-import { DDSLoader } from "three-stdlib";
-import { Suspense } from "react";
-import { Physics, usePlane } from "@react-three/cannon";
+import { TextureLoader } from "three/src/loaders/TextureLoader";
+import { Canvas } from "@react-three/fiber";
+import { useLoader } from "@react-three/fiber";
 import { render, events } from "@react-three/fiber";
+import { Physics, usePlane } from "@react-three/cannon";
 import {
     Environment,
     OrbitControls,
@@ -18,7 +19,6 @@ import {
     useTexture,
     SpotLight,
 } from "@react-three/drei";
-import { TextureLoader } from "three/src/loaders/TextureLoader";
 import { useSpring } from "@react-spring/core";
 import { a } from "@react-spring/three";
 
@@ -50,18 +50,26 @@ const Scene = ({ active, setActive }) => {
         },
     });
 
+    //animation 1
     const scale = spring.to([0, 1], [0, 3]);
     const rotation = spring.to([0, 1], [0, 1]);
 
+    //animation 2
+    const scale2 = spring.to([8, 1], [-1, 0]);
+    const rotation2 = spring.to([3, -19], [0, -1]);
+
     return (
         <a.group
-        // position-y={scale}
+            position-y={(active === 2 && -0.5)}
         >
             <a.mesh
-                rotation-y={rotation}
-                // position-x={scale}
-                position-z={scale}
-            // onClick={() => setActive(0)}
+                rotation-y={(active === 1 && rotation)
+                    || (active === 2 && rotation2)
+                }
+                position-x={(active === 2 && -1)}
+                position-z={(active === 1 && scale)
+                    || (active === 2 && 3)
+                }
             >
                 <primitive
                     object={obj}
@@ -83,6 +91,7 @@ function Floor(props) {
     const { active } = props;
 
     const [ref] = usePlane(() => ({ type: "Static", ...props }));
+
     const [colorMap, displacementMap, normalMap, roughnessMap, aoMap] =
         useLoader(TextureLoader, [
             name("Color"),
@@ -116,17 +125,6 @@ function Floor(props) {
             >
                 <mesh ref={ref} receiveShadow>
                     <planeGeometry args={[100, 100]} />
-                    {/* <MeshReflectorMaterial
-                color="#878790"
-                blur={[400, 400]}
-                resolution={1024}
-                mixBlur={1}
-                mixStrength={3}
-                depthScale={1}
-                minDepthThreshold={0.85}
-                metalness={0.5}
-                roughness={0.5}
-            /> */}
                     <meshStandardMaterial
                         displacementScale={0.2}
                         map={colorMap}
@@ -148,12 +146,19 @@ export default function App() {
 
     function delayAnimate() {
         setTimeout(function () {
-            setActive(Number(!active));
+            setActive(1);
         }, 2400);
         setTimeout(function () {
             setDisplay("block");
         }, 3200);
     }
+
+    function updateDisplay() {
+        if (active === 2) {
+            setDisplay("hidden");
+        }
+    }
+    useEffect(() => updateDisplay(), [active]);
 
     return (
         <div className="App" style={{ backgroundColor: "black", cursor: "url('./cursor.png'),auto" }}>
@@ -170,7 +175,6 @@ export default function App() {
             >
                 Endangered
             </div>
-
             <Canvas
                 camera={{
                     position: [0, 0, 6],
@@ -272,10 +276,22 @@ export default function App() {
                                     fontFamily: "sans-serif",
                                 }}
                             >Select a Point</div>
-                            <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl top-5 hover:top-0 left-[-33.75rem] hover:left-[-34.75rem]">
-                                <div>+</div>
+                            <div className="dot-hover"
+                            // onClick={() => { setActive(1) }}
+                            >
+                                <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl top-5 hover:top-0 left-[-33.75rem] hover:left-[-34.75rem]">
+                                    <div>+</div>
+                                </div>
+                                <div
+                                    className="text-white text-[17px] w-max absolute left-[-3vw] top-[43vh]"
+                                    style={{
+                                        fontFamily: "sans-serif",
+                                    }}
+                                >Poor Vision</div>
                             </div>
-                            <div className="dot-hover">
+                            <div className="dot-hover"
+                            // onClick={() => { setActive(1) }}
+                            >
                                 <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl top-[-14.75rem] hover:top-[-16rem] left-[-16.75rem] hover:left-[-17.75rem]">
                                     <div>+</div>
                                 </div>
@@ -286,10 +302,22 @@ export default function App() {
                                     }}
                                 >Average Weight</div>
                             </div>
-                            <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl top-[-7.75rem] hover:top-[-9rem] left-[-0.75rem] hover:left-[-1.75rem]">
-                                <div>+</div>
+                            <div className="dot-hover"
+                            // onClick={() => { setActive(2) }}
+                            >
+                                <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl top-[-7.75rem] hover:top-[-9rem] left-[-0.75rem] hover:left-[-1.75rem]">
+                                    <div>+</div>
+                                </div>
+                                <div
+                                    className="text-white text-[17px] w-max absolute left-[-3vw] top-[43vh]"
+                                    style={{
+                                        fontFamily: "sans-serif",
+                                    }}
+                                >Color</div>
                             </div>
-                            <div className="dot-hover">
+                            <div className="dot-hover"
+                                onClick={() => { setActive(2) }}
+                            >
                                 <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl top-[-24.75rem] hover:top-[-26rem] left-[32.25rem] hover:left-[31.5rem]">
                                     <div>+</div>
                                 </div>
@@ -301,6 +329,32 @@ export default function App() {
                                 >Rhino Horn</div>
                             </div>
                         </div>
+                    </Html>
+                </mesh>
+                <mesh>
+                    <Html>
+                        <div
+                            className={` bg-[#A9B2A0] w-[43.9vw] h-screen absolute left-[6.1vw] top-[-50vh] p-9 flex flex-col justify-between`}
+                            style={{ display: active === 2 ? "flex" : "none", animation: "slideLeft-2 2000ms", animationFillMode: "both" }}
+                        >
+                            <div className="flex justify-between text-xl font-sans pb-9" style={{ borderBottom: "1px solid black" }}>
+                                <div>01. Rhino Horn</div>
+                                <div>Close</div>
+                            </div>
+                            <div className="px-24 text-left">
+                                <div className="font-title text-[100px]  leading-[6.75rem]">
+                                    THERE ARE 5 SPECIES OF RHINO...
+                                </div>
+                                <div className="font-sans text-xl pt-16">
+                                    ...Two African – black and white rhinos – and three Asian – greater one-horned, Sumatran and Javan rhinos. Three of these (black, Sumatran and Javan) are listed as ‘critically endangered’ by IUCN – there are thought to be fewer than 70 Javan and 100 Sumatran rhinos left in the wild, meaning their populations are truly under threat of extinction.
+                                </div>
+                            </div>
+                            <div className="flex items-end justify-between font-sans">
+                                <div>02</div>
+                                <div className="border border-black rounded-[50px] py-3 px-11 text-[27px]">NEXT FACT</div>
+                            </div>
+                        </div>
+
                     </Html>
                 </mesh>
                 <Suspense fallback={null}>
