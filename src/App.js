@@ -265,11 +265,41 @@ export default function App() {
                 </mesh>
                 <mesh>
                     <Html>
-                        <div className={`${display}`}>
-                            <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl top-5 hover:top-0 left-[-33.75rem] hover:left-[-34.75rem]"><div>+</div></div>
-                            <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl top-[-14.75rem] hover:top-[-16rem] left-[-16.75rem] hover:left-[-17.75rem]"><div>+</div></div>
-                            <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl top-[-7.75rem] hover:top-[-9rem] left-[-0.75rem] hover:left-[-1.75rem]"><div>+</div></div>
-                            <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl top-[-24.75rem] hover:top-[-26rem] left-[32.25rem] hover:left-[31.5rem]"><div>+</div></div>
+                        <div className={`${display} tetx-white`}>
+                            <div
+                                className="text-white text-[17px] w-max absolute left-[-3vw] top-[-47vh]"
+                                style={{
+                                    fontFamily: "sans-serif",
+                                }}
+                            >Select a Point</div>
+                            <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl top-5 hover:top-0 left-[-33.75rem] hover:left-[-34.75rem]">
+                                <div>+</div>
+                            </div>
+                            <div className="dot-hover">
+                                <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl top-[-14.75rem] hover:top-[-16rem] left-[-16.75rem] hover:left-[-17.75rem]">
+                                    <div>+</div>
+                                </div>
+                                <div
+                                    className="text-white text-[17px] w-max absolute left-[-3vw] top-[43vh]"
+                                    style={{
+                                        fontFamily: "sans-serif",
+                                    }}
+                                >Average Weight</div>
+                            </div>
+                            <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl top-[-7.75rem] hover:top-[-9rem] left-[-0.75rem] hover:left-[-1.75rem]">
+                                <div>+</div>
+                            </div>
+                            <div className="dot-hover">
+                                <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl top-[-24.75rem] hover:top-[-26rem] left-[32.25rem] hover:left-[31.5rem]">
+                                    <div>+</div>
+                                </div>
+                                <div
+                                    className="text-white text-[17px] w-max absolute left-[-3vw] top-[43vh]"
+                                    style={{
+                                        fontFamily: "sans-serif",
+                                    }}
+                                >Rhino Horn</div>
+                            </div>
                         </div>
                     </Html>
                 </mesh>

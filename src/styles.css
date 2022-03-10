@@ -96,3 +96,11 @@ body {
 .dot:hover > div {
     display: block;
 }
+
+.dot-hover > div:nth-child(2) {
+    display: none;
+}
+
+.dot-hover:hover > div:nth-child(2) {
+    display: block;
+}
