@@ -22,6 +22,8 @@ import { TextureLoader } from "three/src/loaders/TextureLoader";
 import { useSpring } from "@react-spring/core";
 import { a } from "@react-spring/three";
 
+import "./cursor.svg";
+
 // window.addEventListener("resize", () =>
 //     render(<mesh />, document.querySelector("canvas"), {
 //         events,
@@ -154,7 +156,7 @@ export default function App() {
     }
 
     return (
-        <div className="App" style={{ backgroundColor: "black" }}>
+        <div className="App" style={{ backgroundColor: "black", cursor: "url('./cursor.png'),auto" }}>
             <div
                 style={{
                     fontFamily: "sans-serif",
@@ -264,10 +266,10 @@ export default function App() {
                 <mesh>
                     <Html>
                         <div className={`${display}`}>
-                            <div className="bg-white rounded-full absolute w-[54px] h-[54px] flex justify-center items-center text-5xl top-5 left-[-33.75rem]">+</div>
-                            <div className="bg-white rounded-full absolute w-[54px] h-[54px] flex justify-center items-center text-5xl top-[-14.75rem] left-[-16.75rem]">+</div>
-                            <div className="bg-white rounded-full absolute w-[54px] h-[54px] flex justify-center items-center text-5xl top-[-7.75rem] left-[-0.75rem]">+</div>
-                            <div className="bg-white rounded-full absolute w-[54px] h-[54px] flex justify-center items-center text-5xl top-[-24.75rem] left-[32.25rem]">+</div>
+                            <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl top-5 hover:top-0 left-[-33.75rem] hover:left-[-34.75rem]"><div>+</div></div>
+                            <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl top-[-14.75rem] hover:top-[-16rem] left-[-16.75rem] hover:left-[-17.75rem]"><div>+</div></div>
+                            <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl top-[-7.75rem] hover:top-[-9rem] left-[-0.75rem] hover:left-[-1.75rem]"><div>+</div></div>
+                            <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl top-[-24.75rem] hover:top-[-26rem] left-[32.25rem] hover:left-[31.5rem]"><div>+</div></div>
                         </div>
                     </Html>
                 </mesh>

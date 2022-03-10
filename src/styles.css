@@ -88,3 +88,11 @@ body {
     animation-fill-mode: both;
     animation-delay: 0.5s;
 }
+
+.dot > div {
+    display: none;
+}
+
+.dot:hover > div {
+    display: block;
+}
