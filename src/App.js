@@ -145,7 +145,7 @@ export default function App() {
     const [active, setActive] = useState(0);
     const [display, setDisplay] = useState("hidden");
     const [reverse, setReverse] = useState(null);
-    console.log("find", reverse);
+    const [close, setClose] = useState(null);
 
     function delayAnimate() {
         setTimeout(function () {
@@ -357,21 +357,21 @@ export default function App() {
                             style={{
                                 display: active === 2 ? "flex" : "none",
                                 animation:
-                                    // (active === 1 && "slideRight 2000ms") || (active === 2 && 
-                                    "slideLeft 2000ms"
-                                // )
+                                    (close === "close" && "slideRight 2000ms") || (close === null &&
+                                        "slideLeft 2000ms"
+                                    )
                                 ,
-                                animationFillMode: "both"
+                                animationFillMode: "both",
                             }}
                         >
                             <div className="flex justify-between text-xl font-sans pb-9" style={{ borderBottom: "1px solid black" }}>
                                 <div>01. Rhino Horn</div>
                                 <div
-                                // className="cursor-pointer" onClick={() => { setActive(1) }}
+                                    className="cursor-pointer" onClick={() => { setClose("close") }}
                                 >Close</div>
                             </div>
                             <div className="px-24 text-left">
-                                <div className="font-title text-[100px]  leading-[6.75rem]">
+                                <div className="font-title text-[100px] leading-[6.75rem]">
                                     THERE ARE 5 SPECIES OF RHINO...
                                 </div>
                                 <div className="font-sans text-xl pt-16">
