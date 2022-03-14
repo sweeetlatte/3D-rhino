@@ -23,6 +23,7 @@ import { useSpring } from "@react-spring/core";
 import { a } from "@react-spring/three";
 
 import "./cursor.svg";
+import { cart } from "./Cart.png";
 
 // window.addEventListener("resize", () =>
 //     render(<mesh />, document.querySelector("canvas"), {
@@ -56,7 +57,7 @@ const Scene = ({ active, setActive }) => {
 
     //animation 2
     const scale2 = spring.to([8, 1], [-1, 0]);
-    const rotation2 = spring.to([3, -19], [0, -1]);
+    const rotation2 = spring.to([3, -19], [0, 4]);
 
     return (
         <a.group
@@ -68,7 +69,7 @@ const Scene = ({ active, setActive }) => {
                 }
                 position-x={(active === 2 && -1)}
                 position-z={(active === 1 && scale)
-                    || (active === 2 && 3)
+                    || (active === 2 && 3.2)
                 }
             >
                 <primitive
@@ -143,6 +144,8 @@ export default function App() {
     const [z, setZ] = useState(1);
     const [active, setActive] = useState(0);
     const [display, setDisplay] = useState("hidden");
+    const [reverse, setReverse] = useState(null);
+    console.log("find", reverse);
 
     function delayAnimate() {
         setTimeout(function () {
@@ -161,7 +164,7 @@ export default function App() {
     useEffect(() => updateDisplay(), [active]);
 
     return (
-        <div className="App" style={{ backgroundColor: "black", cursor: "url('./cursor.png'),auto" }}>
+        <div className="App" style={{ backgroundColor: "black" }}>
             <div
                 style={{
                     fontFamily: "sans-serif",
@@ -176,12 +179,14 @@ export default function App() {
                 Endangered
             </div>
             <Canvas
+                className="custom"
                 camera={{
                     position: [0, 0, 6],
                     left: 0,
                     right: 0,
                     far: 10,
                 }}
+                shadows
             >
                 {/* <directionalLight insensity={1} position={[-8, 3, 5]} /> */}
                 {/* <ambientLight intensity={0.3} /> */}
@@ -237,7 +242,8 @@ export default function App() {
                             </div>
                             <div className={z === 3 ? "wavy" : ""}>
                                 <span style={{ "--i": 6 }}>T</span>
-                                <span style={{ "--i": 5.5 }}>O </span>
+                                <span style={{ "--i": 5.5 }}>O</span>
+                                <span style={{ "--i": 5.5 }}>&nbsp;</span>
                                 <span style={{ "--i": 4.5 }}>E</span>
                                 <span style={{ "--i": 4 }}>X</span>
                                 <span style={{ "--i": 3.5 }}>T</span>
@@ -254,8 +260,8 @@ export default function App() {
                             className={z === 3 ? "wavy" : ""}
                             style={{ marginTop: "13.9vh" }}
                         >
-                            <button
-                                className="btn text-[22px] 2xl:text-[27px]"
+                            <div
+                                className="btn text-[22px] 2xl:text-[27px] w-max mx-auto"
                                 style={{ "--i": 2 }}
                                 onClick={() => {
                                     setZ(3);
@@ -263,7 +269,7 @@ export default function App() {
                                 }}
                             >
                                 EXPLORE
-                            </button>
+                            </div>
                         </div>
                     </Html>
                 </mesh>
@@ -277,13 +283,17 @@ export default function App() {
                                 }}
                             >Select a Point</div>
                             <div className="dot-hover"
-                            // onClick={() => { setActive(1) }}
+                                // onClick={() => { setActive(1) }}
+                                onMouseLeave={() => {
+                                    setReverse("transform-reverse");
+                                    console.log("active");
+                                }}
                             >
                                 <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl top-5 hover:top-0 left-[-33.75rem] hover:left-[-34.75rem]">
                                     <div>+</div>
                                 </div>
                                 <div
-                                    className="text-white text-[17px] w-max absolute left-[-3vw] top-[43vh]"
+                                    className={`text-white text-[17px] w-max absolute left-[-3vw] top-[43vh] ${reverse}`}
                                     style={{
                                         fontFamily: "sans-serif",
                                     }}
@@ -296,11 +306,14 @@ export default function App() {
                                     <div>+</div>
                                 </div>
                                 <div
-                                    className="text-white text-[17px] w-max absolute left-[-3vw] top-[43vh]"
+                                    className={`text-white text-[17px] w-max absolute left-[-3vw] top-[43vh] ${reverse}`}
+
                                     style={{
                                         fontFamily: "sans-serif",
                                     }}
-                                >Average Weight</div>
+                                >
+                                    Average Weight
+                                </div>
                             </div>
                             <div className="dot-hover"
                             // onClick={() => { setActive(2) }}
@@ -309,11 +322,14 @@ export default function App() {
                                     <div>+</div>
                                 </div>
                                 <div
-                                    className="text-white text-[17px] w-max absolute left-[-3vw] top-[43vh]"
+                                    className={`text-white text-[17px] w-max absolute left-[-3vw] top-[43vh] ${reverse}`}
+
                                     style={{
                                         fontFamily: "sans-serif",
                                     }}
-                                >Color</div>
+                                >
+                                    Color
+                                </div>
                             </div>
                             <div className="dot-hover"
                                 onClick={() => { setActive(2) }}
@@ -322,11 +338,14 @@ export default function App() {
                                     <div>+</div>
                                 </div>
                                 <div
-                                    className="text-white text-[17px] w-max absolute left-[-3vw] top-[43vh]"
+                                    className={`text-white text-[17px] w-max absolute left-[-3vw] top-[43vh] ${reverse}`}
+
                                     style={{
                                         fontFamily: "sans-serif",
                                     }}
-                                >Rhino Horn</div>
+                                >
+                                    Rhino Horn
+                                </div>
                             </div>
                         </div>
                     </Html>
@@ -335,11 +354,21 @@ export default function App() {
                     <Html>
                         <div
                             className={` bg-[#A9B2A0] w-[43.9vw] h-screen absolute left-[6.1vw] top-[-50vh] p-9 flex flex-col justify-between`}
-                            style={{ display: active === 2 ? "flex" : "none", animation: "slideLeft-2 2000ms", animationFillMode: "both" }}
+                            style={{
+                                display: active === 2 ? "flex" : "none",
+                                animation:
+                                    // (active === 1 && "slideRight 2000ms") || (active === 2 && 
+                                    "slideLeft 2000ms"
+                                // )
+                                ,
+                                animationFillMode: "both"
+                            }}
                         >
                             <div className="flex justify-between text-xl font-sans pb-9" style={{ borderBottom: "1px solid black" }}>
                                 <div>01. Rhino Horn</div>
-                                <div>Close</div>
+                                <div
+                                // className="cursor-pointer" onClick={() => { setActive(1) }}
+                                >Close</div>
                             </div>
                             <div className="px-24 text-left">
                                 <div className="font-title text-[100px]  leading-[6.75rem]">
@@ -362,25 +391,28 @@ export default function App() {
                     <mesh position={[0, -1.5, 1]}>
                         <Scene setActive={setActive} active={active} />
                     </mesh>
-                    {/* <OrbitControls /> */}
+                    <OrbitControls />
+                    {/* light from the bottom left corner */}
                     <SpotLight
-                        position={[-8, -0.5, 9]}
-                        castShadow={true}
-                        // target={target}
+                        // position={[-8, -0.5, 9]}
+                        position={[-0.1, -0.5, 9]}
+                        castShadow
                         penumbra={1}
                         radiusTop={5}
                         radiusBottom={30}
-                        distance={13.5}
+                        // distance={13.5}
+                        // distance={0}
                         angle={0.55}
                         attenuation={20}
                         anglePower={5}
-                        intensity={2}
+                        // intensity={2}
+                        intensity={3}
                         opacity={0.2}
                     />
                     <SpotLight
-                        position={[-2.5, -0.1, 4]}
-                        castShadow={true}
-                        // target={target}
+                        // position={[-2.5, -0.1, 4]}
+                        position={[0, 0, 0]}
+                        castShadow
                         penumbra={1}
                         radiusTop={5}
                         radiusBottom={5}
@@ -393,8 +425,7 @@ export default function App() {
                     />
                     <SpotLight
                         position={[3, 3, 3]}
-                        castShadow={true}
-                        // target={target}
+                        castShadow
                         penumbra={1}
                         radiusTop={5}
                         radiusBottom={5}
