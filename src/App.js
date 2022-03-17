@@ -43,6 +43,7 @@ const Scene = ({ active, setActive }) => {
 
     const { spring } = useSpring({
         spring: active,
+        from: {},
         config: {
             mass: 5,
             tension: 200, //spring energetic load: the bigger, the faster
@@ -56,21 +57,30 @@ const Scene = ({ active, setActive }) => {
     const rotation = spring.to([0, 1], [0, 1]);
 
     //animation 2
-    const scale2 = spring.to([8, 1], [-1, 0]);
+    // const scale2 = spring.to([8, 1], [-1, 0]);
+    const scale2 = spring.to([0, 3], [-1, 0]);
     const rotation2 = spring.to([3, -19], [0, 4]);
 
     return (
         <a.group
-            position-y={(active === 2 && -0.5)}
+            position-y={(active === 2 &&
+                -0.5
+                // scale2
+            )}
         >
             <a.mesh
                 rotation-y={(active === 1 && rotation)
                     || (active === 2 && rotation2)
                 }
-                position-x={(active === 2 && -1)}
+                position-x={(active === 2 &&
+                    -1
+                    // scale2
+                )}
                 position-z={(active === 1 && scale)
-                    || (active === 2 && 3.2)
-                }
+                    || (active === 2 &&
+                        3.2
+                    )}
+
             >
                 <primitive
                     object={obj}
@@ -159,6 +169,10 @@ export default function App() {
     function updateDisplay() {
         if (active === 2) {
             setDisplay("hidden");
+        } else if (active === 1) {
+            setTimeout(function () {
+                setDisplay("block");
+            }, 800);
         }
     }
     useEffect(() => updateDisplay(), [active]);
@@ -200,20 +214,8 @@ export default function App() {
                 /> */}
                 <mesh>
                     <Html scale={1} position={[-7, 1.55, 0]}>
-                        <div
-                            className="text-[151px] 2xl:text-[216px]"
-                            style={{
-                                color: "white",
-                                width: "86vw",
-                                lineHeight: 1,
-                            }}
-                        >
-                            <div
-                                style={{
-                                    display: "flex",
-                                    justifyContent: "space-between",
-                                }}
-                            >
+                        <div className="text-[151px] 2xl:text-[216px] w-[76vw] 2xl:w-[86vw] text-white leading-none">
+                            <div className="flex justify-between">
                                 <div
                                     className={
                                         z === 3 ? "wavy close-reverse" : ""
@@ -289,7 +291,7 @@ export default function App() {
                                     console.log("active");
                                 }}
                             >
-                                <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl top-5 hover:top-0 left-[-33.75rem] hover:left-[-34.75rem]">
+                                <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl 2xl:top-5 top-3 hover:top-0 2xl:left-[-33.75rem] left-[-25.75rem] 2xl:hover:left-[-34.75rem] hover:left-[-26.75rem]">
                                     <div>+</div>
                                 </div>
                                 <div
@@ -302,7 +304,7 @@ export default function App() {
                             <div className="dot-hover"
                             // onClick={() => { setActive(1) }}
                             >
-                                <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl top-[-14.75rem] hover:top-[-16rem] left-[-16.75rem] hover:left-[-17.75rem]">
+                                <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl 2xl:top-[-14.75rem] top-[-11.75rem] 2xl:hover:top-[-16rem] hover:top-[-13rem] 2xl:left-[-16.75rem] left-[-11.75rem] 2xl:hover:left-[-17.75rem] hover:left-[-12.75rem]">
                                     <div>+</div>
                                 </div>
                                 <div
@@ -318,7 +320,7 @@ export default function App() {
                             <div className="dot-hover"
                             // onClick={() => { setActive(2) }}
                             >
-                                <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl top-[-7.75rem] hover:top-[-9rem] left-[-0.75rem] hover:left-[-1.75rem]">
+                                <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl 2xl:top-[-7.75rem] top-[-5.75rem] 2xl:hover:top-[-9rem] hover:top-[-6.75rem] left-[-0.75rem] 2xl:hover:left-[-1.75rem] hover:left-[-1.75rem]">
                                     <div>+</div>
                                 </div>
                                 <div
@@ -334,7 +336,7 @@ export default function App() {
                             <div className="dot-hover"
                                 onClick={() => { setActive(2) }}
                             >
-                                <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl top-[-24.75rem] hover:top-[-26rem] left-[32.25rem] hover:left-[31.5rem]">
+                                <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl 2xl:top-[-24.75rem] top-[-18.5rem] 2xl:hover:top-[-26rem] hover:top-[-20rem] 2xl:left-[32.25rem] left-[24rem] 2xl:hover:left-[31.5rem] hover:left-[23rem]">
                                     <div>+</div>
                                 </div>
                                 <div
@@ -368,7 +370,7 @@ export default function App() {
                             <div className="flex justify-between text-xl font-sans pb-9" style={{ borderBottom: "1px solid black" }}>
                                 <div>01. Rhino Horn</div>
                                 <div
-                                    className="cursor-pointer" onClick={() => { setClose("close") }}
+                                    className="cursor-pointer" onClick={() => { setClose("close"); setActive(1); }}
                                 >Close</div>
                             </div>
                             <div className="px-24 text-left">
@@ -396,6 +398,7 @@ export default function App() {
                     {/* light from the bottom left corner */}
                     {active === 2 ?
                         <SpotLight
+                            // color={0xfff4e5}
                             position={[-0.1, -0.5, 9]}
                             castShadow
                             penumbra={1}
@@ -420,6 +423,7 @@ export default function App() {
                             anglePower={5}
                             intensity={2}
                             opacity={0.2}
+                            focus={1}
                         />
                     }
 
@@ -452,6 +456,7 @@ export default function App() {
                             anglePower={5}
                             intensity={2}
                             opacity={0.2}
+                            focus={1}
                         />
                     }
 
@@ -467,6 +472,7 @@ export default function App() {
                         anglePower={5}
                         intensity={2}
                         opacity={0.2}
+                        focus={1}
                     />
                     {/* {active === 2 ?
                         :
