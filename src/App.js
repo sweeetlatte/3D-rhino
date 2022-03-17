@@ -361,6 +361,7 @@ export default function App() {
                                         "slideLeft 2000ms"
                                     )
                                 ,
+                                animationDelay: "1000ms",
                                 animationFillMode: "both",
                             }}
                         >
@@ -393,36 +394,67 @@ export default function App() {
                     </mesh>
                     <OrbitControls />
                     {/* light from the bottom left corner */}
-                    <SpotLight
-                        // position={[-8, -0.5, 9]}
-                        position={[-0.1, -0.5, 9]}
-                        castShadow
-                        penumbra={1}
-                        radiusTop={5}
-                        radiusBottom={30}
-                        // distance={13.5}
-                        // distance={0}
-                        angle={0.55}
-                        attenuation={20}
-                        anglePower={5}
-                        // intensity={2}
-                        intensity={3}
-                        opacity={0.2}
-                    />
-                    <SpotLight
-                        // position={[-2.5, -0.1, 4]}
-                        position={[0, 0, 0]}
-                        castShadow
-                        penumbra={1}
-                        radiusTop={5}
-                        radiusBottom={5}
-                        distance={5}
-                        angle={0.55}
-                        attenuation={30}
-                        anglePower={5}
-                        intensity={2}
-                        opacity={0.2}
-                    />
+                    {active === 2 ?
+                        <SpotLight
+                            position={[-0.1, -0.5, 9]}
+                            castShadow
+                            penumbra={1}
+                            radiusTop={5}
+                            radiusBottom={30}
+                            angle={0.55}
+                            attenuation={20}
+                            anglePower={5}
+                            intensity={3}
+                            opacity={0.2}
+                        />
+                        :
+                        <SpotLight
+                            position={[-8, -0.5, 9]}
+                            castShadow
+                            penumbra={1}
+                            radiusTop={5}
+                            radiusBottom={30}
+                            distance={13.5}
+                            angle={0.55}
+                            attenuation={20}
+                            anglePower={5}
+                            intensity={2}
+                            opacity={0.2}
+                        />
+                    }
+
+                    {active === 2 ?
+                        <SpotLight
+                            // position={[-2.5, -0.1, 4]}
+                            position={[0, 0, 0]}
+                            castShadow
+                            penumbra={1}
+                            radiusTop={5}
+                            radiusBottom={5}
+                            distance={5}
+                            angle={0.55}
+                            attenuation={30}
+                            anglePower={5}
+                            intensity={2}
+                            opacity={0.2}
+                        />
+                        :
+                        <SpotLight
+                            position={[-2.5, -0.1, 4]}
+                            // position={[0, 0, 0]}
+                            castShadow
+                            penumbra={1}
+                            radiusTop={5}
+                            radiusBottom={5}
+                            distance={5}
+                            angle={0.55}
+                            attenuation={30}
+                            anglePower={5}
+                            intensity={2}
+                            opacity={0.2}
+                        />
+                    }
+
                     <SpotLight
                         position={[3, 3, 3]}
                         castShadow
@@ -436,6 +468,22 @@ export default function App() {
                         intensity={2}
                         opacity={0.2}
                     />
+                    {/* {active === 2 ?
+                        :
+                        <SpotLight
+                            position={[3, 3, 3]}
+                            castShadow
+                            penumbra={1}
+                            radiusTop={5}
+                            radiusBottom={5}
+                            distance={5}
+                            angle={0.15}
+                            attenuation={30}
+                            anglePower={5}
+                            intensity={2}
+                            opacity={0.2}
+                        />
+                    } */}
                     <Physics>
                         <Floor
                             position={[0, -1.5, 0]}
