@@ -374,16 +374,16 @@ export default function App() {
                                 >Close</div>
                             </div>
                             <div className="px-24 text-left">
-                                <div className="font-title text-[100px] leading-[6.75rem]">
+                                <div className="font-title 2xl:text-[100px] text-[70px] 2xl:leading-[6.75rem] leading-[4.75rem]">
                                     THERE ARE 5 SPECIES OF RHINO...
                                 </div>
-                                <div className="font-sans text-xl pt-16">
+                                <div className="font-sans 2xl:text-xl text-sm 2xl:pt-16 pt-12">
                                     ...Two African – black and white rhinos – and three Asian – greater one-horned, Sumatran and Javan rhinos. Three of these (black, Sumatran and Javan) are listed as ‘critically endangered’ by IUCN – there are thought to be fewer than 70 Javan and 100 Sumatran rhinos left in the wild, meaning their populations are truly under threat of extinction.
                                 </div>
                             </div>
                             <div className="flex items-end justify-between font-sans">
                                 <div>02</div>
-                                <div className="border border-black rounded-[50px] py-3 px-11 text-[27px]">NEXT FACT</div>
+                                <div className="border border-black rounded-[50px] py-3 px-11 2xl:text-[27px] text-xl">NEXT FACT</div>
                             </div>
                         </div>
 
