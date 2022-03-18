@@ -384,12 +384,12 @@ export default function App() {
                                 <div
                                     className="font-sans 2xl:text-xl text-sm 2xl:pt-16 pt-12 text-slide-left"
                                 >
-                                    <span style={{ "--i": 3 }}>...Two African – black and white rhinos – and three Asian –&nbsp;</span> 
-                                    <span style={{ "--i": 3.5 }}>greater one-horned, Sumatran and Javan rhinos. Three of these&nbsp;</span> 
-                                    <span style={{ "--i": 4 }}>(black, Sumatran and Javan) are listed as ‘critically endangered’&nbsp;</span> 
-                                    <span style={{ "--i": 4.5 }}>by IUCN – there are thought to be fewer than 70 Javan and 100&nbsp;</span> 
-                                    <span style={{ "--i": 5 }}>Sumatran rhinos left in the wild, meaning their populations are&nbsp;</span> 
-                                    <span style={{ "--i": 5.5 }}>truly under threat of extinction.&nbsp;</span> 
+                                    <span style={{ "--i": 3 }}>...Two African – black and white rhinos – and three Asian –&nbsp;</span>
+                                    <span style={{ "--i": 3.5 }}>greater one-horned, Sumatran and Javan rhinos. Three of these&nbsp;</span>
+                                    <span style={{ "--i": 4 }}>(black, Sumatran and Javan) are listed as ‘critically endangered’&nbsp;</span>
+                                    <span style={{ "--i": 4.5 }}>by IUCN – there are thought to be fewer than 70 Javan and 100&nbsp;</span>
+                                    <span style={{ "--i": 5 }}>Sumatran rhinos left in the wild, meaning their populations are&nbsp;</span>
+                                    <span style={{ "--i": 5.5 }}>truly under threat of extinction.&nbsp;</span>
                                 </div>
                             </div>
                             <div className="flex items-end justify-between font-sans">
