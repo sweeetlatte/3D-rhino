@@ -9,7 +9,7 @@ import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader";
 import { TextureLoader } from "three/src/loaders/TextureLoader";
 import { Canvas } from "@react-three/fiber";
 import { useLoader } from "@react-three/fiber";
-import { render, events } from "@react-three/fiber";
+import { render, events, useFrame } from "@react-three/fiber";
 import { Physics, usePlane } from "@react-three/cannon";
 import {
     Environment,
@@ -41,59 +41,81 @@ const Scene = ({ active, setActive }) => {
         loader.setMaterials(materials);
     });
 
-    const { spring } = useSpring({
-        spring: active,
-        from: {},
-        config: {
-            mass: 5,
-            tension: 200, //spring energetic load: the bigger, the faster
-            friction: 50,
-            precision: 0.0025,
-        },
-    });
+    console.log(obj.rotation);
+
+    useFrame((state) => {
+        const a = state.clock.getElapsedTime();
+
+        if (active === 1) {
+            if (obj.position.z < 3) {
+                obj.position.z += 0.03;
+
+                // obj.position.x = 0.05;
+                // obj.position.z = 3;
+                // obj.rotation.z = -0.5;
+            }
+            if (obj.position.x < 0.05) {
+                obj.position.x += 0.0005;
+            }
+            if (obj.rotation.z < -0.5) {
+                obj.rotation.z -= -0.011;
+            }
+        }
+    })
+
+    // const { spring } = useSpring({
+    //     spring: active,
+    //     from: {},
+    //     config: {
+    //         mass: 5,
+    //         tension: 200, //spring energetic load: the bigger, the faster
+    //         friction: 50,
+    //         precision: 0.0025,
+    //     },
+    // });
 
     //animation 1
-    const scale = spring.to([0, 1], [0, 3]);
-    const rotation = spring.to([0, 1], [0, 1]);
+    // const scale = spring.to([0, 1], [0, 3]);
+    // const rotation = spring.to([0, 1], [0, 1]);
 
     //animation 2
     // const scale2 = spring.to([8, 1], [-1, 0]);
-    const scale2 = spring.to([0, 3], [-1, 0]);
-    const rotation2 = spring.to([3, -19], [0, 4]);
+    // const scale2 = spring.to([0, 3], [-1, 0]);
+    // const rotation2 = spring.to([3, -19], [0, 4]);
 
     return (
-        <a.group
-            position-y={(active === 2 &&
-                -0.5
-                // scale2
-            )}
+        // <a.group
+        //     position-y={(active === 2 &&
+        //         -0.5
+        //         // scale2
+        //     )}
 
-        >
-            <a.mesh
-                rotation-y={(active === 1 && rotation)
-                    || (active === 2 && rotation2)
-                }
-                position-x={(active === 2 &&
-                    -1
-                    // scale2
-                )}
-                position-z={(active === 1 && scale)
-                    || (active === 2 &&
-                        3.2
-                    )}
+        // >
+        //     <a.mesh
+        //         rotation-y={(active === 1 && rotation)
+        //             || (active === 2 && rotation2)
+        //         }
+        //         position-x={(active === 2 &&
+        //             -1
+        //             // scale2
+        //         )}
+        //         position-z={(active === 1 && scale)
+        //             || (active === 2 &&
+        //                 3.2
+        //             )}
 
-            >
-                <primitive
-                    object={obj}
-                    scale={3.5}
-                    rotation={[
-                        (-Math.PI / 180) * (90 - 1.333),
-                        (-Math.PI / 180) * -0.1,
-                        (-Math.PI / 180) * 90,
-                    ]}
-                />
-            </a.mesh>
-        </a.group>
+        //     >
+        <primitive
+            object={obj}
+            scale={3.5}
+            rotation={[
+                (-Math.PI / 180) * (90 - 1.333),
+                (-Math.PI / 180) * -0.1,
+                (-Math.PI / 180) * 90,
+            ]}
+        />
+        //     </a.mesh>
+        // </a.group>
     );
 };
 
@@ -370,7 +392,7 @@ export default function App() {
                             <div className="flex justify-between text-xl font-sans pb-9" style={{ borderBottom: "1px solid black" }}>
                                 <div>01. Rhino Horn</div>
                                 <div
-                                    className="cursor-pointer" onClick={() => { setClose("close"); setActive(1); }}
+                                    onClick={() => { setClose("close"); setActive(1); }}
                                 >Close</div>
                             </div>
                             <div className="px-24 text-left">
