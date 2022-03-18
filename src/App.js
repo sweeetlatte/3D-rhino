@@ -47,64 +47,44 @@ const Scene = ({ active, setActive }) => {
         const a = state.clock.getElapsedTime();
 
         if (active === 1) {
-            if (obj.position.z < 3) {
-                obj.position.z += 0.03;
-
-                // obj.position.x = 0.05;
-                // obj.position.z = 3;
-                // obj.rotation.z = -0.5;
-            }
             if (obj.position.x < 0.05) {
-                obj.position.x += 0.0005;
+                obj.position.x += 0.001;
+            }
+            if (obj.position.z < 3) {
+                obj.position.z += 0.06;
             }
             if (obj.rotation.z < -0.5) {
-                obj.rotation.z -= -0.011;
+                obj.rotation.z -= -0.022;
             }
+            // obj.position.x = 0.05;
+            // obj.position.z = 3;
+            // obj.rotation.z = -0.5;
+        }
+
+        else if (active === 2) {
+            if (obj.position.y > -0.5) {
+                obj.position.y -= 0.015;
+            }
+            if (obj.position.z < 3.2) {
+                obj.position.z += 0.012;
+            }
+            if (obj.rotation.z > -1.5) {
+                obj.rotation.z -= 0.02;
+            }
+            setTimeout(() => {
+                if (obj.position.x > -0.75) {
+                    obj.position.x -= 0.0095;
+                }
+            }, 1000);
+            // console.log("pos y", obj.position.y, "pos z", obj.position.z, "rot z", obj.rotation.z, "pos x", obj.position.x);
+            // obj.position.y = -0.5;
+            // obj.position.z = 3.2;
+            // obj.rotation.z = -1.5;
+            // obj.position.x = -0.9; change after 3 above
         }
     })
 
-    // const { spring } = useSpring({
-    //     spring: active,
-    //     from: {},
-    //     config: {
-    //         mass: 5,
-    //         tension: 200, //spring energetic load: the bigger, the faster
-    //         friction: 50,
-    //         precision: 0.0025,
-    //     },
-    // });
-
-    //animation 1
-    // const scale = spring.to([0, 1], [0, 3]);
-    // const rotation = spring.to([0, 1], [0, 1]);
-
-    //animation 2
-    // const scale2 = spring.to([8, 1], [-1, 0]);
-    // const scale2 = spring.to([0, 3], [-1, 0]);
-    // const rotation2 = spring.to([3, -19], [0, 4]);
-
     return (
-        // <a.group
-        //     position-y={(active === 2 &&
-        //         -0.5
-        //         // scale2
-        //     )}
-
-        // >
-        //     <a.mesh
-        //         rotation-y={(active === 1 && rotation)
-        //             || (active === 2 && rotation2)
-        //         }
-        //         position-x={(active === 2 &&
-        //             -1
-        //             // scale2
-        //         )}
-        //         position-z={(active === 1 && scale)
-        //             || (active === 2 &&
-        //                 3.2
-        //             )}
-
-        //     >
         <primitive
             object={obj}
             scale={3.5}
@@ -114,8 +94,6 @@ const Scene = ({ active, setActive }) => {
                 (-Math.PI / 180) * 90,
             ]}
         />
-        //     </a.mesh>
-        // </a.group>
     );
 };
 
@@ -237,7 +215,7 @@ export default function App() {
                 /> */}
                 <mesh>
                     <Html scale={1} position={[-7, 1.55, 0]}>
-                        <div className="text-[151px] 2xl:text-[216px] w-[76vw] 2xl:w-[86vw] text-white leading-none">
+                        <div className="text-[151px] 2xl:text-[216px] w-[80vw] 2xl:w-[86vw] text-white leading-none">
                             <div className="flex justify-between">
                                 <div
                                     className={
@@ -308,7 +286,6 @@ export default function App() {
                                 }}
                             >Select a Point</div>
                             <div className="dot-hover"
-                                // onClick={() => { setActive(1) }}
                                 onMouseLeave={() => {
                                     setReverse("transform-reverse");
                                 }}
@@ -324,7 +301,6 @@ export default function App() {
                                 >Poor Vision</div>
                             </div>
                             <div className="dot-hover"
-                            // onClick={() => { setActive(1) }}
                             >
                                 <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl 2xl:top-[-14.75rem] top-[-11.75rem] 2xl:hover:top-[-16rem] hover:top-[-13rem] 2xl:left-[-16.75rem] left-[-11.75rem] 2xl:hover:left-[-17.75rem] hover:left-[-12.75rem]">
                                     <div>+</div>
@@ -340,7 +316,6 @@ export default function App() {
                                 </div>
                             </div>
                             <div className="dot-hover"
-                            // onClick={() => { setActive(2) }}
                             >
                                 <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl 2xl:top-[-7.75rem] top-[-5.75rem] 2xl:hover:top-[-9rem] hover:top-[-6.75rem] left-[-0.75rem] 2xl:hover:left-[-1.75rem] hover:left-[-1.75rem]">
                                     <div>+</div>
@@ -363,7 +338,6 @@ export default function App() {
                                 </div>
                                 <div
                                     className={`text-white text-[17px] w-max absolute left-[-3vw] top-[43vh] ${reverse}`}
-
                                     style={{
                                         fontFamily: "sans-serif",
                                     }}
@@ -381,9 +355,7 @@ export default function App() {
                             style={{
                                 display: active === 2 ? "flex" : "none",
                                 animation:
-                                    (close === "close" && "slideRight 2000ms") || (close === null &&
-                                        "slideLeft 2000ms"
-                                    )
+                                    (close === "close" && "slideRight 2000ms") || (close === null && "slideLeft 2000ms")
                                 ,
                                 animationDelay: "1000ms",
                                 animationFillMode: "both",
