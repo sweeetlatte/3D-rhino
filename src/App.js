@@ -67,6 +67,7 @@ const Scene = ({ active, setActive }) => {
                 -0.5
                 // scale2
             )}
+
         >
             <a.mesh
                 rotation-y={(active === 1 && rotation)
@@ -288,7 +289,6 @@ export default function App() {
                                 // onClick={() => { setActive(1) }}
                                 onMouseLeave={() => {
                                     setReverse("transform-reverse");
-                                    console.log("active");
                                 }}
                             >
                                 <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl 2xl:top-5 top-3 hover:top-0 2xl:left-[-33.75rem] left-[-25.75rem] 2xl:hover:left-[-34.75rem] hover:left-[-26.75rem]">
@@ -374,11 +374,22 @@ export default function App() {
                                 >Close</div>
                             </div>
                             <div className="px-24 text-left">
-                                <div className="font-title 2xl:text-[100px] text-[70px] 2xl:leading-[6.75rem] leading-[4.75rem]">
-                                    THERE ARE 5 SPECIES OF RHINO...
+                                <div
+                                    className="font-title 2xl:text-[100px] text-[70px] 2xl:leading-[6.75rem] leading-[4.75rem] text-slide-left"
+                                >
+                                    <span style={{ "--i": 0 }}>THERE ARE&nbsp;</span>
+                                    <span style={{ "--i": 1 }}>5 SPECIES OF&nbsp;</span>
+                                    <span style={{ "--i": 2 }}>RHINO...</span>
                                 </div>
-                                <div className="font-sans 2xl:text-xl text-sm 2xl:pt-16 pt-12">
-                                    ...Two African – black and white rhinos – and three Asian – greater one-horned, Sumatran and Javan rhinos. Three of these (black, Sumatran and Javan) are listed as ‘critically endangered’ by IUCN – there are thought to be fewer than 70 Javan and 100 Sumatran rhinos left in the wild, meaning their populations are truly under threat of extinction.
+                                <div
+                                    className="font-sans 2xl:text-xl text-sm 2xl:pt-16 pt-12 text-slide-left"
+                                >
+                                    <span style={{ "--i": 3 }}>...Two African – black and white rhinos – and three Asian –&nbsp;</span> 
+                                    <span style={{ "--i": 3.5 }}>greater one-horned, Sumatran and Javan rhinos. Three of these&nbsp;</span> 
+                                    <span style={{ "--i": 4 }}>(black, Sumatran and Javan) are listed as ‘critically endangered’&nbsp;</span> 
+                                    <span style={{ "--i": 4.5 }}>by IUCN – there are thought to be fewer than 70 Javan and 100&nbsp;</span> 
+                                    <span style={{ "--i": 5 }}>Sumatran rhinos left in the wild, meaning their populations are&nbsp;</span> 
+                                    <span style={{ "--i": 5.5 }}>truly under threat of extinction.&nbsp;</span> 
                                 </div>
                             </div>
                             <div className="flex items-end justify-between font-sans">

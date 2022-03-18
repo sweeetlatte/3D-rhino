@@ -102,7 +102,7 @@ body {
 }
 
 .dot-hover > div:nth-child(2) {
-   opacity: 0;
+    opacity: 0;
 }
 
 .dot-hover:hover > div:nth-child(2) {
@@ -145,6 +145,22 @@ body {
     100% {
         transform: translateX(0vw);
     }
+}
+
+@keyframes textSlideLeft {
+    0% {
+        transform: translateX(40vw);
+    }
+    100% {
+        transform: translateX(0vw);
+    }
+}
+
+.text-slide-left span {
+    display: inline-block;
+    animation: textSlideLeft 2s ease-out;
+    animation-fill-mode: both;
+    animation-delay: calc(0.2s * var(--i));
 }
 
 @keyframes slideRight {
