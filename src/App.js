@@ -468,8 +468,8 @@ export default function App() {
                                 <div
                                     className={active === 2 ? "font-title 2xl:text-[100px] text-[70px] 2xl:leading-[6.75rem] leading-[4.75rem] text-slide-left" : "font-title 2xl:text-[100px] text-[70px] 2xl:leading-[6.75rem] leading-[4.75rem]"}
                                 >
-                                    <span style={{ "--i": 0 }}>THERE ARE&nbsp;</span>
-                                    <span style={{ "--i": 1 }}>5 SPECIES OF&nbsp;</span>
+                                    <span style={{ "--i": 0, letterSpacing: "-5px" }}>THERE ARE 5&nbsp;</span>
+                                    <span style={{ "--i": 1 }}>SPECIES OF&nbsp;</span>
                                     <span style={{ "--i": 2 }}>RHINO...</span>
                                 </div>
                                 <div
