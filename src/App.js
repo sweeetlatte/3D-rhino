@@ -50,7 +50,7 @@ const Scene = ({ active, close }) => {
 
         if (active === 2) {
             if (obj.position.y > -0.5) {
-                obj.position.y += -0.5/10;
+                obj.position.y += -0.5 / 10;
                 // obj.position.y = -0.5;
                 // console.log("y of active 2", obj.position.y);
             }
@@ -83,17 +83,17 @@ const Scene = ({ active, close }) => {
                 obj.position.x += 0.025;
                 console.log("x of close", obj.position.x);
             }
-            
+
             if (obj.position.z > 3) {
                 obj.position.z -= 0.06;
                 console.log("z of close", obj.position.z);
             }
-            
+
             if (obj.rotation.z < -0.5) {
                 obj.rotation.z -= -0.022;
                 console.log("rot z of close", obj.rotation.z);
             }
-            
+
             if (obj.position.y < 0) {
                 obj.position.y += 0.05;
                 console.log("y of close", obj.position.y);
@@ -412,18 +412,12 @@ export default function App() {
                         <div
                             className={`bg-[#A9B2A0] w-[43.9vw] h-screen absolute left-[50vw] top-[-50vh] p-9 flex flex-col justify-between`}
                             style={{
-                                display:
-                                    // active === 2 ? 
-                                    "flex"
-                                //  : "none"
-                                ,
                                 animationFillMode: "both",
                                 animation:
                                     // (close === "close" && "slideRight 2000ms both") || 
-                                    (active === 2 && "slideLeft 2000ms both")
+                                    (active === 2 && "slideLeft 2000ms both 1000ms")
                                 // "slideLeft 2000ms"
                                 ,
-                                animationDelay: "1000ms",
                             }}
                         >
                             <div className="flex justify-between text-xl font-sans pb-9" style={{ borderBottom: "1px solid black" }}>
