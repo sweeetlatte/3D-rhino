@@ -45,9 +45,7 @@ const Scene = ({ active, close }) => {
     console.log("active", active);
     console.log("pos x", obj.position.x, "pos y", obj.position.y, "pos z", obj.position.z, "rot z", obj.rotation.z);
 
-    useFrame((state) => {
-        const a = state.clock.getElapsedTime();
-
+    useFrame(() => {
         if (active === 2) {
             if (obj.position.y > -0.5) {
                 obj.position.y += -0.5 / 10;
@@ -67,7 +65,7 @@ const Scene = ({ active, close }) => {
             }
             setTimeout(() => {
                 if (obj.position.x > -0.75) {
-                    obj.position.x -= 0.75/45;
+                    obj.position.x -= 0.75 / 45;
                     // obj.position.x = -0.75;
                     // console.log("x of active 2");
                 }
@@ -428,16 +426,21 @@ export default function App() {
                                 className="flex justify-between text-xl font-sans pb-9"
                                 style={{
                                     borderBottom: "1px solid black",
-                                    animation: (active === 2 && "transform 533ms both 2333ms")
+                                    // animation: (active === 2 && "transform 533ms both 2333ms")
                                 }}
                             >
-                                <div>01. Rhino Horn</div>
+                                <div style={{
+                                    animation: (active === 2 && "transform 533ms both 2333ms")
+                                }}>01. Rhino Horn</div>
                                 <div
                                     onClick={() => {
                                         setClose("close");
                                         setActive(3);
                                         // setTimeout(function () {
                                         // }, 3200);
+                                    }}
+                                    style={{
+                                        animation: (active === 2 && "transform 533ms both 2599ms")
                                     }}
                                 >Close</div>
                             </div>
