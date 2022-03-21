@@ -244,7 +244,7 @@ export default function App() {
                     left: "48.15vw",
                     top: "3vh",
                     fontSize: "17px",
-                    display: z === 3 ? "none" : "",
+                    animation: z === 3 && "reverse-transformReverse 466ms both 334ms",
                 }}
             >
                 Endangered
@@ -273,6 +273,10 @@ export default function App() {
                     <Html scale={1} position={[-7, 1.55, 0]}>
                         <div className="text-[151px] 2xl:text-[216px] w-[80vw] 2xl:w-[86vw] text-white leading-none">
                             <div className="flex justify-between">
+                                {/* 1.166 -> 1.400: xong dash
+                                -> 1500: close xong
+                                1600: start wavy
+                                2333: i letter disapear */}
                                 <div
                                     className={
                                         z === 3 ? "wavy close-reverse" : ""
