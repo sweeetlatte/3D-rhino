@@ -217,7 +217,7 @@ export default function App() {
     function delayAnimate() {
         setTimeout(function () {
             setActive(1);
-        }, 2400);
+        }, 1182);
         setTimeout(function () {
             setDisplay("block");
         }, 3200);
@@ -300,19 +300,19 @@ export default function App() {
                                 </div>
                             </div>
                             <div className={z === 3 ? "wavy" : ""}>
-                                <span style={{ "--i": 6 }}>T</span>
-                                <span style={{ "--i": 5.5 }}>O</span>
-                                <span style={{ "--i": 5.5 }}>&nbsp;</span>
-                                <span style={{ "--i": 4.5 }}>E</span>
-                                <span style={{ "--i": 4 }}>X</span>
-                                <span style={{ "--i": 3.5 }}>T</span>
+                                <span style={{ "--i": 10 }}>T</span>
+                                <span style={{ "--i": 8 }}>O</span>
+                                <span style={{ "--i": 8 }}>&nbsp;</span>
+                                <span style={{ "--i": 7 }}>E</span>
+                                <span style={{ "--i": 6 }}>X</span>
+                                <span style={{ "--i": 5 }}>T</span>
                                 <span style={{ "--i": 3 }}>I</span>
-                                <span style={{ "--i": 3.5 }}>N</span>
-                                <span style={{ "--i": 4 }}>C</span>
-                                <span style={{ "--i": 4.5 }}>T</span>
+                                <span style={{ "--i": 5 }}>N</span>
+                                <span style={{ "--i": 6 }}>C</span>
+                                <span style={{ "--i": 7 }}>T</span>
                                 <span style={{ "--i": 5 }}>I</span>
-                                <span style={{ "--i": 5.5 }}>O</span>
-                                <span style={{ "--i": 6 }}>N</span>
+                                <span style={{ "--i": 8 }}>O</span>
+                                <span style={{ "--i": 10 }}>N</span>
                             </div>
                         </div>
                         <div

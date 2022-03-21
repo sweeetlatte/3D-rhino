@@ -35,8 +35,8 @@ body {
 
 .wavy * {
     display: inline-block;
-    animation: wavy 867ms ease-in-out;
-    animation-delay: calc(1.25s + (0.1s * var(--i)));
+    animation: wavy 733ms ease-in-out;
+    animation-delay: calc(434ms + (0.02s * var(--i)));
     animation-fill-mode: both;
 }
 
@@ -66,7 +66,7 @@ body {
 }
 
 .shorten-dash {
-    animation: shortenDash 0.5s ease-in;
+    animation: shortenDash 234ms;
     animation-fill-mode: both;
 }
 
@@ -81,16 +81,14 @@ body {
 
 .close {
     --x: -120px;
-    animation: close 0.75s ease-in-out;
+    animation: close 334ms ease-in;
     animation-fill-mode: both;
-    animation-delay: 0.5s;
 }
 
 .close-reverse {
     --x: 120px;
-    animation: close 0.75s ease-in-out;
+    animation: close 334ms ease-in;
     animation-fill-mode: both;
-    animation-delay: 0.5s;
 }
 
 .dot > div {
