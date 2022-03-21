@@ -67,12 +67,11 @@ const Scene = ({ active, close }) => {
             }
             setTimeout(() => {
                 if (obj.position.x > -0.75) {
-                    obj.position.x -= 0.0095;
+                    obj.position.x -= 0.75/45;
                     // obj.position.x = -0.75;
                     // console.log("x of active 2");
-
                 }
-            }, 1000);
+            }, 1200);
             // obj.position.y = -0.5;
             // obj.position.z = 3.2;
             // obj.rotation.z = -1.5;
