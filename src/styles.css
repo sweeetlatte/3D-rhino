@@ -160,14 +160,14 @@ body {
     display: inline-block;
     animation: textSlideLeft 2s ease-out;
     animation-fill-mode: both;
-    animation-delay: calc(0.2s * var(--i));
+    animation-delay: calc(2066ms + (0.2s * var(--i)));
 }
 
 @keyframes slideRight {
     0% {
-        transform: translateX(0vw);
+        left: 50vw;
     }
     100% {
-        transform: translateX(43.9vw);
+        left: 50vw;
     }
 }

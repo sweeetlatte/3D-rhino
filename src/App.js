@@ -78,25 +78,25 @@ const Scene = ({ active, close }) => {
             // obj.rotation.z = -1.5;
             // obj.position.x = -0.75; change after 3 above
         }
-        else if (close === "close") {
+        else if (active === 3) {
             if (obj.position.x < 0.05) {
                 obj.position.x += 0.025;
-                console.log("x of close", obj.position.x);
+                // console.log("x of close", obj.position.x);
             }
 
             if (obj.position.z > 3) {
                 obj.position.z -= 0.06;
-                console.log("z of close", obj.position.z);
+                // console.log("z of close", obj.position.z);
             }
 
             if (obj.rotation.z < -0.5) {
                 obj.rotation.z -= -0.022;
-                console.log("rot z of close", obj.rotation.z);
+                // console.log("rot z of close", obj.rotation.z);
             }
 
             if (obj.position.y < 0) {
                 obj.position.y += 0.05;
-                console.log("y of close", obj.position.y);
+                // console.log("y of close", obj.position.y);
             }
 
             // obj.position.x = 0.05;
@@ -229,7 +229,7 @@ export default function App() {
     function updateDisplay() {
         if (active === 2) {
             setDisplay("hidden");
-        } else if (active === 1) {
+        } else if (active === 1 || active === 3) {
             setTimeout(function () {
                 setDisplay("block");
             }, 800);
@@ -412,33 +412,46 @@ export default function App() {
                         <div
                             className={`bg-[#A9B2A0] w-[43.9vw] h-screen absolute left-[50vw] top-[-50vh] p-9 flex flex-col justify-between`}
                             style={{
-                                animationFillMode: "both",
                                 animation:
-                                    // (close === "close" && "slideRight 2000ms both") || 
-                                    (active === 2 && "slideLeft 2000ms both 1000ms")
+                                    // active === 2 ? "slideLeft 2000ms both 1000ms" :
+                                    //     "slideRight 2000ms both"
+                                    (active === 2 && "slideLeft 966ms both 1500ms")
                                 // "slideLeft 2000ms"
                                 ,
                             }}
                         >
-                            <div className="flex justify-between text-xl font-sans pb-9" style={{ borderBottom: "1px solid black" }}>
+                            {/* 9.800 -> 11.300: animation xong chính diện = 1500
+                                -> 12.266: animation info bg xong
+                                -> 12.133: 01. rhino hiện ra -> 12.666 xong
+                                11.866 -> 12.866: title xong
+                                11.966 -> 13.700: text xong */}
+                            <div
+                                className="flex justify-between text-xl font-sans pb-9"
+                                style={{
+                                    borderBottom: "1px solid black",
+                                    animation: (active === 2 && "transform 533ms both 2333ms")
+                                }}
+                            >
                                 <div>01. Rhino Horn</div>
                                 <div
                                     onClick={() => {
                                         setClose("close");
-                                        setActive(1);
+                                        setActive(3);
+                                        // setTimeout(function () {
+                                        // }, 3200);
                                     }}
                                 >Close</div>
                             </div>
                             <div className="px-24 text-left">
                                 <div
-                                    className="font-title 2xl:text-[100px] text-[70px] 2xl:leading-[6.75rem] leading-[4.75rem] text-slide-left"
+                                    className={active === 2 ? "font-title 2xl:text-[100px] text-[70px] 2xl:leading-[6.75rem] leading-[4.75rem] text-slide-left" : "font-title 2xl:text-[100px] text-[70px] 2xl:leading-[6.75rem] leading-[4.75rem]"}
                                 >
                                     <span style={{ "--i": 0 }}>THERE ARE&nbsp;</span>
                                     <span style={{ "--i": 1 }}>5 SPECIES OF&nbsp;</span>
                                     <span style={{ "--i": 2 }}>RHINO...</span>
                                 </div>
                                 <div
-                                    className="font-sans 2xl:text-xl text-sm 2xl:pt-16 pt-12 text-slide-left"
+                                    className={active === 2 ? "font-sans 2xl:text-xl text-sm 2xl:pt-16 pt-12 text-slide-left" : "font-sans 2xl:text-xl text-sm 2xl:pt-16 pt-12"}
                                 >
                                     <span style={{ "--i": 3 }}>...Two African – black and white rhinos – and three Asian –&nbsp;</span>
                                     <span style={{ "--i": 3.5 }}>greater one-horned, Sumatran and Javan rhinos. Three of these&nbsp;</span>
