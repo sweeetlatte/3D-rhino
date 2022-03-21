@@ -220,7 +220,7 @@ export default function App() {
         }, 1182);
         setTimeout(function () {
             setDisplay("block");
-        }, 3200);
+        }, 1734);
     }
 
     function updateDisplay() {
@@ -343,6 +343,7 @@ export default function App() {
                                 className="text-white text-[17px] w-max absolute left-[-3vw] top-[-47vh]"
                                 style={{
                                     fontFamily: "sans-serif",
+                                    animation: "transform 566ms ease-out both",
                                 }}
                             >Select a Point</div>
                             <div className="dot-hover"
@@ -350,7 +351,12 @@ export default function App() {
                                     setReverse("transform-reverse");
                                 }}
                             >
-                                <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl 2xl:top-5 top-3 hover:top-0 2xl:left-[-33.75rem] left-[-25.75rem] 2xl:hover:left-[-34.75rem] hover:left-[-26.75rem]">
+                                <div
+                                    className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl 2xl:top-5 top-3 hover:top-0 2xl:left-[-33.75rem] left-[-25.75rem] 2xl:hover:left-[-34.75rem] hover:left-[-26.75rem]"
+                                    style={{
+                                        animation: "transform 167ms ease-out both 900ms",
+                                    }}
+                                >
                                     <div>+</div>
                                 </div>
                                 <div
@@ -362,12 +368,16 @@ export default function App() {
                             </div>
                             <div className="dot-hover"
                             >
-                                <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl 2xl:top-[-14.75rem] top-[-11.75rem] 2xl:hover:top-[-16rem] hover:top-[-13rem] 2xl:left-[-16.75rem] left-[-11.75rem] 2xl:hover:left-[-17.75rem] hover:left-[-12.75rem]">
+                                <div
+                                    className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl 2xl:top-[-14.75rem] top-[-11.75rem] 2xl:hover:top-[-16rem] hover:top-[-13rem] 2xl:left-[-16.75rem] left-[-11.75rem] 2xl:hover:left-[-17.75rem] hover:left-[-12.75rem]"
+                                    style={{
+                                        animation: "transform 167ms ease-out both 1066ms",
+                                    }}
+                                >
                                     <div>+</div>
                                 </div>
                                 <div
                                     className={`text-white text-[17px] w-max absolute left-[-3vw] top-[43vh] ${reverse}`}
-
                                     style={{
                                         fontFamily: "sans-serif",
                                     }}
@@ -377,12 +387,16 @@ export default function App() {
                             </div>
                             <div className="dot-hover"
                             >
-                                <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl 2xl:top-[-7.75rem] top-[-5.75rem] 2xl:hover:top-[-9rem] hover:top-[-6.75rem] left-[-0.75rem] 2xl:hover:left-[-1.75rem] hover:left-[-1.75rem]">
+                                <div
+                                    className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl 2xl:top-[-7.75rem] top-[-5.75rem] 2xl:hover:top-[-9rem] hover:top-[-6.75rem] left-[-0.75rem] 2xl:hover:left-[-1.75rem] hover:left-[-1.75rem]"
+                                    style={{
+                                        animation: "transform 167ms ease-out both 1232ms",
+                                    }}
+                                >
                                     <div>+</div>
                                 </div>
                                 <div
                                     className={`text-white text-[17px] w-max absolute left-[-3vw] top-[43vh] ${reverse}`}
-
                                     style={{
                                         fontFamily: "sans-serif",
                                     }}
@@ -393,7 +407,12 @@ export default function App() {
                             <div className="dot-hover"
                                 onClick={() => { setActive(2) }}
                             >
-                                <div className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl 2xl:top-[-24.75rem] top-[-18.5rem] 2xl:hover:top-[-26rem] hover:top-[-20rem] 2xl:left-[32.25rem] left-[24rem] 2xl:hover:left-[31.5rem] hover:left-[23rem]">
+                                <div
+                                    className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl 2xl:top-[-24.75rem] top-[-18.5rem] 2xl:hover:top-[-26rem] hover:top-[-20rem] 2xl:left-[32.25rem] left-[24rem] 2xl:hover:left-[31.5rem] hover:left-[23rem]"
+                                    style={{
+                                        animation: "transform 167ms ease-out both 1398ms",
+                                    }}
+                                >
                                     <div>+</div>
                                 </div>
                                 <div
@@ -587,6 +606,6 @@ export default function App() {
                     </Physics>
                 </Suspense>
             </Canvas>
-        </div>
+        </div >
     );
 }
