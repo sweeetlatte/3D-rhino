@@ -140,10 +140,10 @@ body {
 
 @keyframes slideLeft {
     0% {
-        transform: translateX(43.9vw);
+        transform: translateX(0vw);
     }
     100% {
-        transform: translateX(0vw);
+        transform: translateX(-43.9vw);
     }
 }
 

@@ -34,54 +34,113 @@ import { cart } from "./Cart.png";
 
 THREE.DefaultLoadingManager.addHandler(/\.dds$/i, new DDSLoader());
 
-const Scene = ({ active, setActive }) => {
+const Scene = ({ active, close }) => {
     const materials = useLoader(MTLLoader, "rhino.mtl");
     const obj = useLoader(OBJLoader, "rhino.obj", (loader) => {
         materials.preload();
         loader.setMaterials(materials);
     });
 
-    console.log(obj.rotation);
+    console.log("close", close);
+    console.log("active", active);
+    // console.log("pos x", obj.position.x, "pos y", obj.position.y, "pos z", obj.position.z, "rot z", obj.rotation.z);
 
     useFrame((state) => {
         const a = state.clock.getElapsedTime();
 
-        if (active === 1) {
+        if (active === 2) {
+            if (obj.position.y > -0.5) {
+                // obj.position.y -= 0.015;
+                obj.position.y = -0.5;
+                // console.log("y of active 2");
+            }
+            if (obj.position.z < 3.2) {
+                // obj.position.z += 0.012;
+                obj.position.z = 3.2;
+                // console.log("z of active 2");
+            }
+            if (obj.rotation.z > -1.5) {
+                // obj.rotation.z -= 0.02;
+                obj.rotation.z = -1.5;
+                // console.log("rot z of active 2");
+
+            }
+            setTimeout(() => {
+                if (obj.position.x > -0.75) {
+                    // obj.position.x -= 0.0095;
+                    obj.position.x = -0.75;
+                    // console.log("x of active 2");
+
+                }
+            }, 1000);
+            // obj.position.y = -0.5;
+            // obj.position.z = 3.2;
+            // obj.rotation.z = -1.5;
+            // obj.position.x = -0.75; change after 3 above
+        }
+        else if (close === "close") {
+            if (obj.position.x < 0.05) {
+                obj.position.x = 0.05;
+            }
+
+            if (obj.position.z > 3) {
+                obj.position.z = 3;
+            }
+
+            if (obj.rotation.z < -0.5) {
+                obj.rotation.z = -0.5;
+            }
+
+            if (obj.position.y < -0.2) {
+                obj.position.y = 0;
+            }
+
+            // obj.position.x = 0.05;
+            // obj.position.z = 3;
+            // obj.rotation.z = -0.5;
+        }
+        else if (active === 1 && obj.position.y !== 0) {
             if (obj.position.x < 0.05) {
                 obj.position.x += 0.001;
             }
+
             if (obj.position.z < 3) {
                 obj.position.z += 0.06;
             }
+
             if (obj.rotation.z < -0.5) {
                 obj.rotation.z -= -0.022;
+            }
+
+            if (obj.position.y > -0.2) {
+                obj.position.y -= 0.05;
+            }
+        }
+
+        else if (active === 1 && obj.position.y === 0) {
+            if (obj.position.x < 0.05) {
+                obj.position.x += 0.001;
+            }
+
+            if (obj.position.z < 3) {
+                obj.position.z += 0.06;
+            }
+
+            if (obj.rotation.z < -0.5) {
+                obj.rotation.z -= -0.022;
+            }
+
+            if (obj.position.y < -0.2) {
+                obj.position.y += 0.05;
             }
             // obj.position.x = 0.05;
             // obj.position.z = 3;
             // obj.rotation.z = -0.5;
         }
 
-        else if (active === 2) {
-            if (obj.position.y > -0.5) {
-                obj.position.y -= 0.015;
-            }
-            if (obj.position.z < 3.2) {
-                obj.position.z += 0.012;
-            }
-            if (obj.rotation.z > -1.5) {
-                obj.rotation.z -= 0.02;
-            }
-            setTimeout(() => {
-                if (obj.position.x > -0.75) {
-                    obj.position.x -= 0.0095;
-                }
-            }, 1000);
-            // console.log("pos y", obj.position.y, "pos z", obj.position.z, "rot z", obj.rotation.z, "pos x", obj.position.x);
-            // obj.position.y = -0.5;
-            // obj.position.z = 3.2;
-            // obj.rotation.z = -1.5;
-            // obj.position.x = -0.9; change after 3 above
-        }
+        // else 
+
+        // else 
     })
 
     return (
@@ -351,11 +410,17 @@ export default function App() {
                 <mesh>
                     <Html>
                         <div
-                            className={` bg-[#A9B2A0] w-[43.9vw] h-screen absolute left-[6.1vw] top-[-50vh] p-9 flex flex-col justify-between`}
+                            className={` bg-[#A9B2A0] w-[43.9vw] h-screen absolute left-[50vw] top-[-50vh] p-9 flex flex-col justify-between`}
                             style={{
-                                display: active === 2 ? "flex" : "none",
+                                display: 
+                                // active === 2 ? 
+                                "flex"
+                                //  : "none"
+                                 ,
+
                                 animation:
-                                    (close === "close" && "slideRight 2000ms") || (close === null && "slideLeft 2000ms")
+                                    (close === "close" && "slideRight 2000ms") || (active === 2 && "slideLeft 2000ms")
+                                    // "slideLeft 2000ms"
                                 ,
                                 animationDelay: "1000ms",
                                 animationFillMode: "both",
@@ -364,7 +429,10 @@ export default function App() {
                             <div className="flex justify-between text-xl font-sans pb-9" style={{ borderBottom: "1px solid black" }}>
                                 <div>01. Rhino Horn</div>
                                 <div
-                                    onClick={() => { setClose("close"); setActive(1); }}
+                                    onClick={() => {
+                                        setClose("close"); 
+                                        setActive(1);
+                                    }}
                                 >Close</div>
                             </div>
                             <div className="px-24 text-left">
@@ -397,7 +465,7 @@ export default function App() {
                 <Suspense fallback={null}>
                     {/* change 1 to z when everything is done */}
                     <mesh position={[0, -1.5, 1]}>
-                        <Scene setActive={setActive} active={active} />
+                        <Scene active={active} close={close} />
                     </mesh>
                     <OrbitControls />
                     {/* light from the bottom left corner */}
