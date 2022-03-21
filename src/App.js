@@ -173,7 +173,7 @@ function Floor(props) {
         spring: active,
         config: {
             mass: 5,
-            tension: 200, //spring energetic load: the bigger, the faster
+            tension: 145, //spring energetic load: the bigger, the faster
             friction: 50,
             precision: 0.0025,
         },
@@ -426,7 +426,6 @@ export default function App() {
                                 className="flex justify-between text-xl font-sans pb-9"
                                 style={{
                                     borderBottom: "1px solid black",
-                                    // animation: (active === 2 && "transform 533ms both 2333ms")
                                 }}
                             >
                                 <div style={{
@@ -436,8 +435,6 @@ export default function App() {
                                     onClick={() => {
                                         setClose("close");
                                         setActive(3);
-                                        // setTimeout(function () {
-                                        // }, 3200);
                                     }}
                                     style={{
                                         animation: (active === 2 && "transform 533ms both 2599ms")
