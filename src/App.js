@@ -43,32 +43,32 @@ const Scene = ({ active, close }) => {
 
     console.log("close", close);
     console.log("active", active);
-    // console.log("pos x", obj.position.x, "pos y", obj.position.y, "pos z", obj.position.z, "rot z", obj.rotation.z);
+    console.log("pos x", obj.position.x, "pos y", obj.position.y, "pos z", obj.position.z, "rot z", obj.rotation.z);
 
     useFrame((state) => {
         const a = state.clock.getElapsedTime();
 
         if (active === 2) {
             if (obj.position.y > -0.5) {
-                // obj.position.y -= 0.015;
-                obj.position.y = -0.5;
-                // console.log("y of active 2");
+                obj.position.y += -0.5/10;
+                // obj.position.y = -0.5;
+                // console.log("y of active 2", obj.position.y);
             }
             if (obj.position.z < 3.2) {
-                // obj.position.z += 0.012;
-                obj.position.z = 3.2;
+                obj.position.z += 0.012;
+                // obj.position.z = 3.2;
                 // console.log("z of active 2");
             }
             if (obj.rotation.z > -1.5) {
-                // obj.rotation.z -= 0.02;
-                obj.rotation.z = -1.5;
+                obj.rotation.z -= 0.02;
+                // obj.rotation.z = -1.5;
                 // console.log("rot z of active 2");
 
             }
             setTimeout(() => {
                 if (obj.position.x > -0.75) {
-                    // obj.position.x -= 0.0095;
-                    obj.position.x = -0.75;
+                    obj.position.x -= 0.0095;
+                    // obj.position.x = -0.75;
                     // console.log("x of active 2");
 
                 }
@@ -80,19 +80,23 @@ const Scene = ({ active, close }) => {
         }
         else if (close === "close") {
             if (obj.position.x < 0.05) {
-                obj.position.x = 0.05;
+                obj.position.x += 0.025;
+                console.log("x of close", obj.position.x);
             }
-
+            
             if (obj.position.z > 3) {
-                obj.position.z = 3;
+                obj.position.z -= 0.06;
+                console.log("z of close", obj.position.z);
             }
-
+            
             if (obj.rotation.z < -0.5) {
-                obj.rotation.z = -0.5;
+                obj.rotation.z -= -0.022;
+                console.log("rot z of close", obj.rotation.z);
             }
-
-            if (obj.position.y < -0.2) {
-                obj.position.y = 0;
+            
+            if (obj.position.y < 0) {
+                obj.position.y += 0.05;
+                console.log("y of close", obj.position.y);
             }
 
             // obj.position.x = 0.05;
@@ -137,10 +141,6 @@ const Scene = ({ active, close }) => {
             // obj.position.z = 3;
             // obj.rotation.z = -0.5;
         }
-
-        // else 
-
-        // else 
     })
 
     return (
@@ -410,27 +410,27 @@ export default function App() {
                 <mesh>
                     <Html>
                         <div
-                            className={` bg-[#A9B2A0] w-[43.9vw] h-screen absolute left-[50vw] top-[-50vh] p-9 flex flex-col justify-between`}
+                            className={`bg-[#A9B2A0] w-[43.9vw] h-screen absolute left-[50vw] top-[-50vh] p-9 flex flex-col justify-between`}
                             style={{
-                                display: 
-                                // active === 2 ? 
-                                "flex"
+                                display:
+                                    // active === 2 ? 
+                                    "flex"
                                 //  : "none"
-                                 ,
-
+                                ,
+                                animationFillMode: "both",
                                 animation:
-                                    (close === "close" && "slideRight 2000ms") || (active === 2 && "slideLeft 2000ms")
-                                    // "slideLeft 2000ms"
+                                    // (close === "close" && "slideRight 2000ms both") || 
+                                    (active === 2 && "slideLeft 2000ms both")
+                                // "slideLeft 2000ms"
                                 ,
                                 animationDelay: "1000ms",
-                                animationFillMode: "both",
                             }}
                         >
                             <div className="flex justify-between text-xl font-sans pb-9" style={{ borderBottom: "1px solid black" }}>
                                 <div>01. Rhino Horn</div>
                                 <div
                                     onClick={() => {
-                                        setClose("close"); 
+                                        setClose("close");
                                         setActive(1);
                                     }}
                                 >Close</div>
