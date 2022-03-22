@@ -270,8 +270,8 @@ export default function App() {
                     shadow-camera-far={20}
                 /> */}
                 <mesh>
-                    <Html scale={1} position={[-7, 1.55, 0]}>
-                        <div className="text-[151px] 2xl:text-[216px] w-[80vw] 2xl:w-[86vw] text-white leading-none">
+                    <Html scale={1} position={[-7, 1.7, 0]}>
+                        <div className="text-[151px] 2xl:text-[216px] w-[80vw] 2xl:w-[86vw] text-white leading-none" style={{ lineHeight: 0.9 }}>
                             <div className="flex justify-between">
                                 {/* 1.166 -> 1.400: xong dash
                                 -> 1500: close xong
@@ -295,7 +295,7 @@ export default function App() {
                                 >
                                     —
                                 </div>
-                                <div className={z === 3 ? "wavy close" : ""}>
+                                <div className={z === 3 ? "wavy close" : ""} style={{ letterSpacing: "-8px" }}>
                                     <span style={{ "--i": 5 }}>C</span>
                                     <span style={{ "--i": 2 }}>L</span>
                                     <span style={{ "--i": 1 }}>O</span>
@@ -321,7 +321,7 @@ export default function App() {
                         </div>
                         <div
                             className={z === 3 ? "wavy" : ""}
-                            style={{ marginTop: "13.9vh" }}
+                            style={{ marginTop: "12.7vh", marginLeft: "2vw" }}
                         >
                             <div
                                 className="btn text-[22px] 2xl:text-[27px] w-max mx-auto"
@@ -340,7 +340,7 @@ export default function App() {
                     <Html>
                         <div className={`${display} tetx-white`}>
                             <div
-                                className="text-white text-[17px] w-max absolute left-[-3vw] top-[-47vh]"
+                                className="text-white text-[17px] w-max absolute left-[-5vw] top-[-47vh]"
                                 style={{
                                     fontFamily: "sans-serif",
                                     animation: "transform 566ms ease-out both",
@@ -430,7 +430,7 @@ export default function App() {
                 <mesh>
                     <Html>
                         <div
-                            className={`bg-[#A9B2A0] w-[43.9vw] h-screen absolute left-[50vw] top-[-50vh] p-9 flex flex-col justify-between`}
+                            className={`bg-[#A9B2A0] w-[43.9vw] h-screen absolute left-[50vw] top-[-50vh] px-9 py-8`}
                             style={{
                                 animation:
                                     // active === 2 ? "slideLeft 2000ms both 1000ms" :
@@ -452,7 +452,8 @@ export default function App() {
                                 }}
                             >
                                 <div style={{
-                                    animation: (active === 2 && "transform 533ms both 2333ms")
+                                    animation: (active === 2 && "transform 533ms both 2333ms"),
+                                    letterSpacing: "-1px",
                                 }}>01. Rhino Horn</div>
                                 <div
                                     onClick={() => {
@@ -464,26 +465,28 @@ export default function App() {
                                     }}
                                 >Close</div>
                             </div>
-                            <div className="px-24 text-left">
+                            <div className="px-[5.5rem] pt-[15.5vh] text-left">
                                 <div
-                                    className={active === 2 ? "font-title 2xl:text-[100px] text-[70px] 2xl:leading-[6.75rem] leading-[4.75rem] text-slide-left" : "font-title 2xl:text-[100px] text-[70px] 2xl:leading-[6.75rem] leading-[4.75rem]"}
+                                    className={active === 2 ? "font-title 2xl:text-[100px] text-[70px] 2xl:leading-[5.75rem] leading-[4.75rem] text-slide-left" : "font-title 2xl:text-[100px] text-[70px] 2xl:leading-[6.75rem] leading-[4.75rem]"}
+                                    style={{ letterSpacing: "-3px" }}
                                 >
-                                    <span style={{ "--i": 0, letterSpacing: "-5px" }}>THERE ARE 5&nbsp;</span>
+                                    <span style={{ "--i": 0 }}>THERE ARE 5&nbsp;</span>
                                     <span style={{ "--i": 1 }}>SPECIES OF&nbsp;</span>
                                     <span style={{ "--i": 2 }}>RHINO...</span>
                                 </div>
                                 <div
-                                    className={active === 2 ? "font-sans 2xl:text-xl text-sm 2xl:pt-16 pt-12 text-slide-left" : "font-sans 2xl:text-xl text-sm 2xl:pt-16 pt-12"}
+                                    className={active === 2 ? "font-sans 2xl:text-xl text-sm 2xl:pt-[4.2rem] pt-12 text-slide-left" : "font-sans 2xl:text-xl text-sm 2xl:pt-[4.2rem] pt-12"}
+                                    style={{ lineHeight: 1.8, letterSpacing: "-0.4px" }}
                                 >
-                                    <span style={{ "--i": 3 }}>...Two African – black and white rhinos – and three Asian –&nbsp;</span>
-                                    <span style={{ "--i": 3.5 }}>greater one-horned, Sumatran and Javan rhinos. Three of these&nbsp;</span>
-                                    <span style={{ "--i": 4 }}>(black, Sumatran and Javan) are listed as ‘critically endangered’&nbsp;</span>
-                                    <span style={{ "--i": 4.5 }}>by IUCN – there are thought to be fewer than 70 Javan and 100&nbsp;</span>
-                                    <span style={{ "--i": 5 }}>Sumatran rhinos left in the wild, meaning their populations are&nbsp;</span>
-                                    <span style={{ "--i": 5.5 }}>truly under threat of extinction.&nbsp;</span>
+                                    <span style={{ "--i": 3 }}>...Two African – black and white rhinos – and three Asian – greater&nbsp;</span>
+                                    <span style={{ "--i": 3.5 }}>one-horned, Sumatran and Javan rhinos. Three of these (black,&nbsp;</span>
+                                    <span style={{ "--i": 4 }}>Sumatran and Javan) are listed as ‘critically endangered’ by IUCN&nbsp;</span>
+                                    <span style={{ "--i": 4.5 }}>– there are thought to be fewer than 70 Javan and 100 Sumatran&nbsp;</span>
+                                    <span style={{ "--i": 5 }}>rhinos left in the wild, meaning their populations are truly&nbsp;</span>
+                                    <span style={{ "--i": 5.5 }}>under threat of extinction.&nbsp;</span>
                                 </div>
                             </div>
-                            <div className="flex items-end justify-between font-sans">
+                            <div className="flex items-end justify-between font-sans pt-[15vh]">
                                 <div>02</div>
                                 <div className="border border-black rounded-[50px] py-3 px-11 2xl:text-[27px] text-xl">NEXT FACT</div>
                             </div>
