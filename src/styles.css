@@ -15,7 +15,6 @@ body {
 }
 
 .btn {
-    padding: 8px 56px;
     border-radius: 50px;
     font-size: 27px;
     border: 1px solid white;
@@ -178,4 +177,18 @@ body {
     100% {
         left: 50vw;
     }
+}
+
+@media (min-width: 1366px) { 
+    .close {
+    --x: -100px;
+    animation: close 334ms ease-in;
+    animation-fill-mode: both;
+}
+
+.close-reverse {
+    --x: 100px;
+    animation: close 334ms ease-in;
+    animation-fill-mode: both;
+}
 }

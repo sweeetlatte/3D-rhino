@@ -237,13 +237,13 @@ export default function App() {
     return (
         <div className="App" style={{ backgroundColor: "black" }}>
             <div
+                className="text-xs 2xl:text-[17px]"
                 style={{
                     fontFamily: "sans-serif",
                     color: "white",
                     position: "absolute",
                     left: "48.15vw",
                     top: "3vh",
-                    fontSize: "17px",
                     animation: z === 3 && "reverse-transformReverse 466ms both 334ms",
                 }}
             >
@@ -271,7 +271,7 @@ export default function App() {
                 /> */}
                 <mesh>
                     <Html scale={1} position={[-7, 1.7, 0]}>
-                        <div className="text-[151px] 2xl:text-[216px] w-[80vw] 2xl:w-[86vw] text-white leading-none" style={{ lineHeight: 0.9 }}>
+                        <div className="text-[160px] 2xl:text-[216px] w-[85.1vw] 2xl:w-[86vw] text-white leading-[0.87] 2xl:leading-[0.9] tracking-[-4px] 2xl:tracking-normal">
                             <div className="flex justify-between">
                                 {/* 1.166 -> 1.400: xong dash
                                 -> 1500: close xong
@@ -303,7 +303,7 @@ export default function App() {
                                     <span style={{ "--i": 5 }}>E</span>
                                 </div>
                             </div>
-                            <div className={z === 3 ? "wavy" : ""}>
+                            <div className={z === 3 ? "wavy w-[86vw]" : "w-[86vw]"}>
                                 <span style={{ "--i": 10 }}>T</span>
                                 <span style={{ "--i": 8 }}>O</span>
                                 <span style={{ "--i": 8 }}>&nbsp;</span>
@@ -320,11 +320,10 @@ export default function App() {
                             </div>
                         </div>
                         <div
-                            className={z === 3 ? "wavy" : ""}
-                            style={{ marginTop: "12.7vh", marginLeft: "2vw" }}
+                            className={z === 3 ? "wavy 2xl:mt-[12.7vh] mt-[12.1vh] 2xl:ml-[2vw] ml-[3vw]" : "2xl:mt-[12.7vh] mt-[12.1vh] 2xl:ml-[2vw] ml-[3vw]"}
                         >
                             <div
-                                className="btn text-[22px] 2xl:text-[27px] w-max mx-auto"
+                                className="btn text-[22px] 2xl:text-[27px] w-max mx-auto py-[5px] px-[33px] 2xl:py-[8px] 2xl:px-[56px]"
                                 style={{ "--i": 2 }}
                                 onClick={() => {
                                     setZ(3);
@@ -340,7 +339,7 @@ export default function App() {
                     <Html>
                         <div className={`${display} tetx-white`}>
                             <div
-                                className="text-white text-[17px] w-max absolute left-[-5vw] top-[-47vh]"
+                                className="text-white text-[17px] w-max absolute 2xl:left-[-5vw] left-[-5.5vw] top-[-47vh]"
                                 style={{
                                     fontFamily: "sans-serif",
                                     animation: "transform 566ms ease-out both",
@@ -430,7 +429,7 @@ export default function App() {
                 <mesh>
                     <Html>
                         <div
-                            className={`bg-[#A9B2A0] w-[43.9vw] h-screen absolute left-[50vw] top-[-50vh] px-9 py-8`}
+                            className={`bg-[#A9B2A0] w-[43.9vw] h-screen absolute left-[50vw] top-[-50vh] 2xl:px-9 p-6 2xl:py-8`}
                             style={{
                                 animation:
                                     // active === 2 ? "slideLeft 2000ms both 1000ms" :
@@ -446,7 +445,7 @@ export default function App() {
                                 11.866 -> 12.866: title xong
                                 11.966 -> 13.700: text xong */}
                             <div
-                                className="flex justify-between text-xl font-sans pb-9"
+                                className="flex justify-between 2xl:text-xl text-sm font-sans 2xl:pb-9 pb-7"
                                 style={{
                                     borderBottom: "1px solid black",
                                 }}
@@ -465,9 +464,9 @@ export default function App() {
                                     }}
                                 >Close</div>
                             </div>
-                            <div className="px-[5.5rem] pt-[15.5vh] text-left">
+                            <div className="2xl:px-[5.5rem] pr-[3rem] pl-[4.2rem] 2xl:pt-[15.5vh] pt-[15vh] text-left">
                                 <div
-                                    className={active === 2 ? "font-title 2xl:text-[100px] text-[70px] 2xl:leading-[5.75rem] leading-[4.75rem] text-slide-left" : "font-title 2xl:text-[100px] text-[70px] 2xl:leading-[6.75rem] leading-[4.75rem]"}
+                                    className={active === 2 ? "font-title 2xl:text-[100px] text-[70px] 2xl:leading-[5.75rem] leading-[4.1rem] text-slide-left 2xl:tracking-[-3px] tracking-[-1px]" : "font-title 2xl:text-[100px] text-[70px] 2xl:leading-[6.75rem] leading-[4.1rem] 2xl:tracking-[-3px] tracking-[-1px]"}
                                     style={{ letterSpacing: "-3px" }}
                                 >
                                     <span style={{ "--i": 0 }}>THERE ARE 5&nbsp;</span>
@@ -488,7 +487,7 @@ export default function App() {
                             </div>
                             <div className="flex items-end justify-between font-sans pt-[15vh]">
                                 <div>02</div>
-                                <div className="border border-black rounded-[50px] py-3 px-11 2xl:text-[27px] text-xl">NEXT FACT</div>
+                                <div className="border border-black rounded-[50px] 2xl:py-3 py-2 px-7 2xl:px-11 2xl:text-[27px] text-xl">NEXT FACT</div>
                             </div>
                         </div>
 
