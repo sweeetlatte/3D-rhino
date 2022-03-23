@@ -52,8 +52,9 @@ const Scene = ({ active, close }) => {
                 // obj.position.y = -0.5;
                 // console.log("y of active 2", obj.position.y);
             }
-            if (obj.position.z < 3.2) {
-                obj.position.z += 0.012;
+            if (obj.position.z < 1.1) {
+                // obj.position.z += 0.012;
+                obj.position.z += 1.1/10;
                 // obj.position.z = 3.2;
                 // console.log("z of active 2");
             }
@@ -64,8 +65,8 @@ const Scene = ({ active, close }) => {
 
             }
             setTimeout(() => {
-                if (obj.position.x > -0.75) {
-                    obj.position.x -= 0.75 / 45;
+                if (obj.position.x > -1) {
+                    obj.position.x -= 1 / 45;
                     // obj.position.x = -0.75;
                     // console.log("x of active 2");
                 }
@@ -81,7 +82,7 @@ const Scene = ({ active, close }) => {
                 // console.log("x of close", obj.position.x);
             }
 
-            if (obj.position.z > 3) {
+            if (obj.position.z > 0.9) {
                 obj.position.z -= 0.06;
                 // console.log("z of close", obj.position.z);
             }
@@ -105,7 +106,7 @@ const Scene = ({ active, close }) => {
                 obj.position.x += 0.001;
             }
 
-            if (obj.position.z < 3) {
+            if (obj.position.z < 0.9) {
                 obj.position.z += 0.06;
             }
 
