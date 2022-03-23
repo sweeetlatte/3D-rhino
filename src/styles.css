@@ -179,16 +179,40 @@ body {
     }
 }
 
-@media (min-width: 1366px) { 
-    .close {
-    --x: -100px;
-    animation: close 334ms ease-in;
-    animation-fill-mode: both;
+.loading {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
 }
 
-.close-reverse {
-    --x: 100px;
-    animation: close 334ms ease-in;
-    animation-fill-mode: both;
+.loading-bar-container {
+    width: 100px;
+    height: 32px;
+    background: #272727;
 }
+
+.loading-bar {
+    height: 32px;
+    background: #76888f;
+}
+
+@media (min-width: 1366px) {
+    .close {
+        --x: -100px;
+        animation: close 334ms ease-in;
+        animation-fill-mode: both;
+    }
+
+    .close-reverse {
+        --x: 100px;
+        animation: close 334ms ease-in;
+        animation-fill-mode: both;
+    }
 }
