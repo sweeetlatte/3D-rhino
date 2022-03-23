@@ -354,7 +354,7 @@ export default function App() {
                                 }}
                             >
                                 <div
-                                    className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl 2xl:top-[5.25rem] top-[3.4rem] hover:top-[2.35rem] 2xl:left-[-26.5rem] left-[-18.9rem] 2xl:hover:left-[-27.75rem] hover:left-[-20rem]"
+                                    className="dot cursor-none bg-white rounded-full absolute w-[15px] hover:w-[36px] h-[15px] hover:h-[36px] flex justify-center items-center text-4xl font-bold 2xl:top-[5.25rem] top-[3.4rem] hover:top-[2.35rem] 2xl:left-[-26.5rem] left-[-18.9rem] 2xl:hover:left-[-27.75rem] hover:left-[-20rem]"
                                     style={{
                                         animation: "transform 167ms ease-out both 900ms",
                                     }}
@@ -371,7 +371,7 @@ export default function App() {
                             <div className="dot-hover"
                             >
                                 <div
-                                    className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl 2xl:top-[-10.75rem] top-[-7.75rem] 2xl:hover:top-[-12rem] hover:top-[-8.75rem] 2xl:left-[-12.5rem] left-[-9rem] 2xl:hover:left-[-13.75rem] hover:left-[-10rem]"
+                                    className="dot cursor-none bg-white rounded-full absolute w-[15px] hover:w-[36px] h-[15px] hover:h-[36px] flex justify-center items-center text-4xl font-bold 2xl:top-[-10.75rem] top-[-7.75rem] 2xl:hover:top-[-12rem] hover:top-[-8.75rem] 2xl:left-[-12.5rem] left-[-9rem] 2xl:hover:left-[-13.75rem] hover:left-[-10rem]"
                                     style={{
                                         animation: "transform 167ms ease-out both 1066ms",
                                     }}
@@ -390,7 +390,7 @@ export default function App() {
                             <div className="dot-hover"
                             >
                                 <div
-                                    className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl 2xl:top-[-2.25rem] top-[-1.75rem] 2xl:hover:top-[-3rem] hover:top-[-2.75rem] 2xl:left-[5.25rem] left-[3.75rem] hover:left-[2.75rem]"
+                                    className="dot cursor-none bg-white rounded-full absolute w-[15px] hover:w-[36px] h-[15px] hover:h-[36px] flex justify-center items-center text-4xl font-bold 2xl:top-[-2.25rem] top-[-1.75rem] 2xl:hover:top-[-3rem] hover:top-[-2.75rem] 2xl:left-[5.25rem] left-[3.75rem] hover:left-[2.75rem]"
                                     style={{
                                         animation: "transform 167ms ease-out both 1232ms",
                                     }}
@@ -410,7 +410,7 @@ export default function App() {
                                 onClick={() => { setActive(2) }}
                             >
                                 <div
-                                    className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl 2xl:top-[-19.75rem] top-[-14.5rem] 2xl:hover:top-[-21rem] hover:top-[-15rem] 2xl:left-[36.25rem] left-[25.5rem] 2xl:hover:left-[35.5rem] hover:left-[24.5rem]"
+                                    className="dot cursor-none bg-white rounded-full absolute w-[15px] hover:w-[36px] h-[15px] hover:h-[36px] flex justify-center items-center text-4xl font-bold 2xl:top-[-19.75rem] top-[-14.5rem] 2xl:hover:top-[-21rem] hover:top-[-15rem] 2xl:left-[36.25rem] left-[25.5rem] 2xl:hover:left-[35.5rem] hover:left-[24.5rem]"
                                     style={{
                                         animation: "transform 167ms ease-out both 1398ms",
                                     }}
