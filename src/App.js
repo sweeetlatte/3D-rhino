@@ -42,9 +42,9 @@ const Scene = ({ active, close }) => {
         loader.setMaterials(materials);
     });
 
-    console.log("close", close);
-    console.log("active", active);
-    console.log("pos x", obj.position.x, "pos y", obj.position.y, "pos z", obj.position.z, "rot z", obj.rotation.z);
+    // console.log("close", close);
+    // console.log("active", active);
+    // console.log("pos x", obj.position.x, "pos y", obj.position.y, "pos z", obj.position.z, "rot z", obj.rotation.z);
 
     useFrame(() => {
         if (active === 2) {
@@ -211,8 +211,7 @@ function Floor(props) {
     );
 }
 
-function Loader() {
-    const { active, progress } = useProgress();
+function Loader({ active, progress }) {
     const transition = useTransition(active, {
         from: { opacity: 1, progress: 0 },
         leave: { opacity: 0 },
@@ -231,6 +230,8 @@ function Loader() {
 }
 
 export default function App() {
+    const { active: abc, progress } = useProgress();
+
     const [z, setZ] = useState(1);
     const [active, setActive] = useState(0);
     const [display, setDisplay] = useState("hidden");
@@ -246,6 +247,8 @@ export default function App() {
         }, 1734);
     }
 
+    console.log("progress", progress);
+
     function updateDisplay() {
         if (active === 2) {
             setDisplay("hidden");
@@ -259,8 +262,6 @@ export default function App() {
 
     return (
         <>
-            <Loader />
-
             <div className="App" style={{ backgroundColor: "black" }}>
                 <div
                     className="text-xs 2xl:text-[17px]"
@@ -296,9 +297,10 @@ export default function App() {
                     shadow-camera-near={0.1}
                     shadow-camera-far={20}
                 /> */}
+                    {abc && 
                     <mesh>
                         <Html scale={1} position={[-7, 1.7, 0]}>
-                            <div className="text-[160px] 2xl:text-[216px] w-[85.1vw] 2xl:w-[86vw] text-white leading-[0.87] 2xl:leading-[0.9] tracking-[-4px] 2xl:tracking-normal">
+                            <div className="text-[160px] 2xl:text-[216px] w-[85.1vw] 1xl:w-[80.1vw] 2xl:w-[86vw] text-white leading-[0.87] 2xl:leading-[0.9] tracking-[-4px] 2xl:tracking-normal">
                                 <div className="flex justify-between">
                                     {/* 1.166 -> 1.400: xong dash
                                 -> 1500: close xong
@@ -330,7 +332,7 @@ export default function App() {
                                         <span style={{ "--i": 5 }}>E</span>
                                     </div>
                                 </div>
-                                <div className={z === 3 ? "wavy w-[86vw]" : "w-[86vw]"}>
+                                <div className={z === 3 ? "wavy w-[86vw] 1xl:w-[81vw]" : "w-[86vw] 1xl:w-[81vw]"}>
                                     <span style={{ "--i": 10 }}>T</span>
                                     <span style={{ "--i": 8 }}>O</span>
                                     <span style={{ "--i": 8 }}>&nbsp;</span>
@@ -347,7 +349,7 @@ export default function App() {
                                 </div>
                             </div>
                             <div
-                                className={z === 3 ? "wavy 2xl:mt-[12.7vh] mt-[12.1vh] 2xl:ml-[2vw] ml-[3vw]" : "2xl:mt-[12.7vh] mt-[12.1vh] 2xl:ml-[2vw] ml-[3vw]"}
+                                className={z === 3 ? "wavy 2xl:mt-[12.7vh] mt-[12.1vh] 2xl:ml-[2vw] ml-[3vw] 1xl:ml-0" : "2xl:mt-[12.7vh] mt-[12.1vh] 2xl:ml-[2vw] ml-[3vw] 1xl:ml-0"}
                             >
                                 <div
                                     className="btn text-[22px] 2xl:text-[27px] w-max mx-auto py-[5px] px-[33px] 2xl:py-[8px] 2xl:px-[56px]"
@@ -362,6 +364,7 @@ export default function App() {
                             </div>
                         </Html>
                     </mesh>
+                    } 
                     <mesh>
                         <Html>
                             <div className={`${display} tetx-white`}>
@@ -525,7 +528,7 @@ export default function App() {
                         <mesh position={[0.2, -1.5, 3]}>
                             <Scene active={active} close={close} />
                         </mesh>
-                        <OrbitControls />
+                        {/* <OrbitControls /> */}
                         {/* light from the bottom left corner */}
                         {active === 2 ?
                             <SpotLight
@@ -638,7 +641,8 @@ export default function App() {
 
             </div >
 
-
+            <Loader active={abc} progress={progress} />
+            
         </>
     );
 }
