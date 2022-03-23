@@ -120,22 +120,24 @@ const Scene = ({ active, close }) => {
 
         else if (active === 1 && obj.position.y === 0) {
             if (obj.position.x < 0.05) {
-                obj.position.x += 0.001;
+                obj.position.x += 0.05 / 30;
+                // console.log("active 1 pos y 0", obj.position.x)
             }
 
-            if (obj.position.z < 3) {
-                obj.position.z += 0.06;
+            if (obj.position.z < 0.9) {
+                // obj.position.z += 0.06;
+                obj.position.z += 0.9 / 30;
             }
 
             if (obj.rotation.z < -0.5) {
-                obj.rotation.z -= -0.022;
+                obj.rotation.z -= -0.5 / 15;
             }
 
             if (obj.position.y < -0.2) {
-                obj.position.y += 0.05;
+                obj.position.y += 0.2 / 30;
             }
             // obj.position.x = 0.05;
-            // obj.position.z = 3;
+            // obj.position.z = 0.9;
             // obj.rotation.z = -0.5;
         }
     })
@@ -351,7 +353,7 @@ export default function App() {
                                 }}
                             >
                                 <div
-                                    className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl 2xl:top-5 top-3 hover:top-0 2xl:left-[-33.75rem] left-[-25.75rem] 2xl:hover:left-[-34.75rem] hover:left-[-26.75rem]"
+                                    className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl 2xl:top-[5.25rem] top-3 hover:top-[4rem] 2xl:left-[-26.5rem] left-[-25.75rem] 2xl:hover:left-[-27.75rem] hover:left-[-26.75rem]"
                                     style={{
                                         animation: "transform 167ms ease-out both 900ms",
                                     }}
@@ -368,7 +370,7 @@ export default function App() {
                             <div className="dot-hover"
                             >
                                 <div
-                                    className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl 2xl:top-[-14.75rem] top-[-11.75rem] 2xl:hover:top-[-16rem] hover:top-[-13rem] 2xl:left-[-16.75rem] left-[-11.75rem] 2xl:hover:left-[-17.75rem] hover:left-[-12.75rem]"
+                                    className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl 2xl:top-[-10.75rem] top-[-11.75rem] 2xl:hover:top-[-12rem] hover:top-[-13rem] 2xl:left-[-12.5rem] left-[-11.75rem] 2xl:hover:left-[-13.75rem] hover:left-[-12.75rem]"
                                     style={{
                                         animation: "transform 167ms ease-out both 1066ms",
                                     }}
@@ -387,7 +389,7 @@ export default function App() {
                             <div className="dot-hover"
                             >
                                 <div
-                                    className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl 2xl:top-[-7.75rem] top-[-5.75rem] 2xl:hover:top-[-9rem] hover:top-[-6.75rem] left-[-0.75rem] 2xl:hover:left-[-1.75rem] hover:left-[-1.75rem]"
+                                    className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl 2xl:top-[-2.25rem] top-[-5.75rem] 2xl:hover:top-[-3rem] hover:top-[-6.75rem] 2xl:left-[5.25rem] left-[-0.75rem] hover:left-[4.25rem]"
                                     style={{
                                         animation: "transform 167ms ease-out both 1232ms",
                                     }}
@@ -407,7 +409,7 @@ export default function App() {
                                 onClick={() => { setActive(2) }}
                             >
                                 <div
-                                    className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl 2xl:top-[-24.75rem] top-[-18.5rem] 2xl:hover:top-[-26rem] hover:top-[-20rem] 2xl:left-[32.25rem] left-[24rem] 2xl:hover:left-[31.5rem] hover:left-[23rem]"
+                                    className="dot cursor-none bg-white rounded-full absolute w-[20px] hover:w-[54px] h-[20px] hover:h-[54px] flex justify-center items-center text-5xl 2xl:top-[-19.75rem] top-[-18.5rem] 2xl:hover:top-[-21rem] hover:top-[-21rem] 2xl:left-[36.25rem] left-[24rem] 2xl:hover:left-[35.5rem] hover:left-[23rem]"
                                     style={{
                                         animation: "transform 167ms ease-out both 1398ms",
                                     }}
@@ -495,7 +497,7 @@ export default function App() {
                 </mesh>
                 <Suspense fallback={null}>
                     {/* change 1 to z when everything is done */}
-                    <mesh position={[0, -1.5, 1]}>
+                    <mesh position={[0.2, -1.5, 3]}>
                         <Scene active={active} close={close} />
                     </mesh>
                     <OrbitControls />
