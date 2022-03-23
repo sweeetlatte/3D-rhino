@@ -234,7 +234,7 @@ export default function App() {
     const [i, seti] = useState(0);
     function count() {
         if (progress === 100 && i < 2) return seti(i + 1) && false;
-        else if (i == 2) return true;
+        else if (i >= 2) return true;
     }
 
     const [z, setZ] = useState(1);
