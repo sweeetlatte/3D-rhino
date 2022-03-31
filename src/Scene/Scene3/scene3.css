@@ -1,0 +1,33 @@
+@keyframes slideLeft {
+    0% {
+        left: 50vw;
+    }
+    100% {
+        left: 6.1vw;
+    }
+}
+
+@keyframes textSlideLeft {
+    0% {
+        transform: translateX(40vw);
+    }
+    100% {
+        transform: translateX(0vw);
+    }
+}
+
+.text-slide-left span {
+    display: inline-block;
+    animation: textSlideLeft 2s ease-out;
+    animation-fill-mode: both;
+    animation-delay: calc(2066ms + (0.2s * var(--i)));
+}
+
+@keyframes slideRight {
+    0% {
+        left: 50vw;
+    }
+    100% {
+        left: 50vw;
+    }
+}
