@@ -14,61 +14,6 @@ body {
     cursor: url(sparkcr.png), auto;
 }
 
-.dot > div {
-    display: none;
-}
-
-.dot:hover > div {
-    display: block;
-}
-
-.dot-hover > div:nth-child(2) {
-    opacity: 0;
-}
-
-.dot-hover:hover > div:nth-child(2) {
-    display: block;
-    animation: transform 0.3s ease-out;
-    animation-fill-mode: both;
-}
-
-@keyframes reverse-transformReverse {
-    0% {
-        transform: rotate(0deg) translateY(0);
-        opacity: 1;
-    }
-    100% {
-        transform: rotate(-9deg) translateY(-50px);
-        opacity: 0;
-    }
-}
-@keyframes transform {
-    0% {
-        transform: rotate(9deg) translateY(50px);
-        opacity: 0;
-    }
-    100% {
-        transform: rotate(0deg) translateY(0);
-        opacity: 1;
-    }
-}
-
-@keyframes transformReverse {
-    0% {
-        transform: rotate(0deg) translateY(0);
-        opacity: 1;
-    }
-    100% {
-        transform: rotate(9deg) translateY(50px);
-        opacity: 0;
-    }
-}
-
-.transform-reverse {
-    animation: transformReverse 0.3s ease-out;
-    animation-fill-mode: both;
-}
-
 @keyframes slideLeft {
     0% {
         left: 50vw;
