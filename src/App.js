@@ -6,22 +6,19 @@ import * as THREE from "three";
 import { DDSLoader } from "three-stdlib";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader";
-import { TextureLoader } from "three/src/loaders/TextureLoader";
 import { Canvas } from "@react-three/fiber";
 import { useLoader } from "@react-three/fiber";
 import { useFrame } from "@react-three/fiber";
-import { Physics, usePlane } from "@react-three/cannon";
+import { Physics } from "@react-three/cannon";
 import {
     Html,
     SpotLight,
     useProgress
 } from "@react-three/drei";
-import { useSpring } from "@react-spring/core";
-import { a } from "@react-spring/three";
-import { a as b, useTransition } from "@react-spring/web";
 
 import "./cursor.svg";
-import Loader from "./Loader/Loader"
+import Loader from "./Loader/Loader";
+import Floor from "./Floor/Floor";
 
 // window.addEventListener("resize", () =>
 //     render(<mesh />, document.querySelector("canvas"), {
@@ -32,7 +29,7 @@ import Loader from "./Loader/Loader"
 
 THREE.DefaultLoadingManager.addHandler(/\.dds$/i, new DDSLoader());
 
-const Scene = ({ active, close }) => {
+const Scene = ({ active }) => {
     const materials = useLoader(MTLLoader, "rhino.mtl");
     const obj = useLoader(OBJLoader, "rhino.obj", (loader) => {
         materials.preload();
@@ -132,57 +129,6 @@ const Scene = ({ active, close }) => {
         />
     );
 };
-
-const name = (type) => `Marble016_1K_${type}.jpg`;
-
-function Floor(props) {
-    const { active } = props;
-
-    const [ref] = usePlane(() => ({ type: "Static", ...props }));
-
-    const [colorMap, displacementMap, normalMap, roughnessMap, aoMap] =
-        useLoader(TextureLoader, [
-            name("Color"),
-            name("Displacement"),
-            name("Normal"),
-            name("Roughness"),
-            name("AmbientOcclusion"),
-        ]);
-
-    const { spring } = useSpring({
-        spring: active,
-        config: {
-            mass: 5,
-            tension: 145, //spring energetic load: the bigger, the faster
-            friction: 50,
-            precision: 0.0025,
-        },
-    });
-
-    const scale = spring.to([0, 1], [0, 3]);
-    const rotation = spring.to([0, 1], [0, 1]);
-
-    return (
-        <a.group>
-            <a.mesh
-                rotation-y={rotation}
-                position-z={scale}
-            >
-                <mesh ref={ref} receiveShadow>
-                    <planeGeometry args={[100, 100]} />
-                    <meshStandardMaterial
-                        displacementScale={0.2}
-                        map={colorMap}
-                        displacementMap={displacementMap}
-                        normalMap={normalMap}
-                        roughnessMap={roughnessMap}
-                        aoMap={aoMap}
-                    />
-                </mesh>
-            </a.mesh>
-        </a.group>
-    );
-}
 
 export default function App() {
     const { active: abc, progress } = useProgress();
@@ -467,7 +413,7 @@ export default function App() {
                     </mesh>
                     <Suspense fallback={null}>
                         <mesh position={[0.2, -1.5, 3]}>
-                            <Scene active={active} close={close} />
+                            <Scene active={active} />
                         </mesh>
 
                         {/* light from the bottom left corner */}
