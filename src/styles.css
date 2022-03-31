@@ -14,82 +14,6 @@ body {
     cursor: url(sparkcr.png), auto;
 }
 
-.btn {
-    border-radius: 50px;
-    font-size: 27px;
-    border: 1px solid white;
-    color: white;
-    /* fill color animation */
-    background: linear-gradient(to bottom, rgba(255, 0, 0, 0) 50%, white 50%);
-    background-size: 100% 200%;
-    background-position: top;
-    transition: all 0.3s;
-}
-
-.btn:hover {
-    color: black;
-    /* fill color animation */
-    background-position: bottom;
-}
-
-.wavy * {
-    display: inline-block;
-    animation: wavy 733ms ease-in-out;
-    animation-delay: calc(434ms + (0.02s * var(--i)));
-    animation-fill-mode: both;
-}
-
-@keyframes wavy {
-    0% {
-        opacity: 1;
-        transform: translateY(0px);
-    }
-    100% {
-        transform: translateY(-240px);
-        opacity: 0;
-    }
-}
-
-.dash {
-    overflow: hidden;
-    width: 200px;
-}
-
-@keyframes shortenDash {
-    0% {
-        width: 200px;
-    }
-    100% {
-        width: 0px;
-    }
-}
-
-.shorten-dash {
-    animation: shortenDash 234ms;
-    animation-fill-mode: both;
-}
-
-@keyframes close {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(var(--x));
-    }
-}
-
-.close {
-    --x: -120px;
-    animation: close 334ms ease-in;
-    animation-fill-mode: both;
-}
-
-.close-reverse {
-    --x: 120px;
-    animation: close 334ms ease-in;
-    animation-fill-mode: both;
-}
-
 .dot > div {
     display: none;
 }
@@ -176,19 +100,5 @@ body {
     }
     100% {
         left: 50vw;
-    }
-}
-
-@media (min-width: 1366px) {
-    .close {
-        --x: -100px;
-        animation: close 334ms ease-in;
-        animation-fill-mode: both;
-    }
-
-    .close-reverse {
-        --x: 100px;
-        animation: close 334ms ease-in;
-        animation-fill-mode: both;
     }
 }

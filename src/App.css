@@ -2,8 +2,3 @@
     text-align: center;
     height: 100vh;
 }
-
-button:hover {
-    background-color: white;
-    color: black;
-}
