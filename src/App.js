@@ -9,14 +9,10 @@ import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader";
 import { TextureLoader } from "three/src/loaders/TextureLoader";
 import { Canvas } from "@react-three/fiber";
 import { useLoader } from "@react-three/fiber";
-import { render, events, useFrame } from "@react-three/fiber";
+import { useFrame } from "@react-three/fiber";
 import { Physics, usePlane } from "@react-three/cannon";
 import {
-    Environment,
-    OrbitControls,
-    MeshReflectorMaterial,
     Html,
-    useTexture,
     SpotLight,
     useProgress
 } from "@react-three/drei";
@@ -42,34 +38,20 @@ const Scene = ({ active, close }) => {
         loader.setMaterials(materials);
     });
 
-    // console.log("close", close);
-    // console.log("active", active);
-    // console.log("pos x", obj.position.x, "pos y", obj.position.y, "pos z", obj.position.z, "rot z", obj.rotation.z);
-
     useFrame(() => {
         if (active === 2) {
             if (obj.position.y > -0.5) {
                 obj.position.y += -0.5 / 10;
-                // obj.position.y = -0.5;
-                // console.log("y of active 2", obj.position.y);
             }
             if (obj.position.z < 1.1) {
-                // obj.position.z += 0.012;
                 obj.position.z += 1.1 / 10;
-                // obj.position.z = 3.2;
-                // console.log("z of active 2");
             }
             if (obj.rotation.z > -1.5) {
                 obj.rotation.z -= 0.02;
-                // obj.rotation.z = -1.5;
-                // console.log("rot z of active 2");
-
             }
             setTimeout(() => {
                 if (obj.position.x > -1) {
                     obj.position.x -= 1 / 45;
-                    // obj.position.x = -0.75;
-                    // console.log("x of active 2");
                 }
             }, 1200);
             // obj.position.y = -0.5;
@@ -80,24 +62,19 @@ const Scene = ({ active, close }) => {
         else if (active === 3) {
             if (obj.position.x < 0.05) {
                 obj.position.x += 0.025;
-                // console.log("x of close", obj.position.x);
             }
 
             if (obj.position.z > 0.9) {
                 obj.position.z -= 0.06;
-                // console.log("z of close", obj.position.z);
             }
 
             if (obj.rotation.z < -0.5) {
                 obj.rotation.z -= -0.022;
-                // console.log("rot z of close", obj.rotation.z);
             }
 
             if (obj.position.y < 0) {
                 obj.position.y += 0.05;
-                // console.log("y of close", obj.position.y);
             }
-
             // obj.position.x = 0.05;
             // obj.position.z = 3;
             // obj.rotation.z = -0.5;
@@ -123,11 +100,9 @@ const Scene = ({ active, close }) => {
         else if (active === 1 && obj.position.y === 0) {
             if (obj.position.x < 0.05) {
                 obj.position.x += 0.05 / 30;
-                // console.log("active 1 pos y 0", obj.position.x)
             }
 
             if (obj.position.z < 0.9) {
-                // obj.position.z += 0.06;
                 obj.position.z += 0.9 / 30;
             }
 
@@ -187,12 +162,9 @@ function Floor(props) {
     const rotation = spring.to([0, 1], [0, 1]);
 
     return (
-        <a.group
-        // position-y={scale}
-        >
+        <a.group>
             <a.mesh
                 rotation-y={rotation}
-                // position-x={scale}
                 position-z={scale}
             >
                 <mesh ref={ref} receiveShadow>
@@ -252,8 +224,6 @@ export default function App() {
         }, 1734);
     }
 
-    // console.log("progress", progress);
-
     function updateDisplay() {
         if (active === 2) {
             setDisplay("hidden");
@@ -291,26 +261,15 @@ export default function App() {
                     }}
                     shadows
                 >
-
-                    {/* <directionalLight insensity={1} position={[-8, 3, 5]} /> */}
-                    {/* <ambientLight intensity={0.3} /> */}
-                    {/* <spotLight position={[0, 0, 0]} angle={0.3} /> */}
-                    {/* <directionalLight
-                    castShadow
-                    position={[0, 10, 0]}
-                    insensity={1.5}
-                    shadow-camera-near={0.1}
-                    shadow-camera-far={20}
-                /> */}
                     {count() &&
                         <mesh>
                             <Html scale={1} position={[-7, 1.7, 0]}>
                                 <div className="text-[160px] 2xl:text-[216px] w-[85.1vw] 1xl:w-[80.1vw] 2xl:w-[86vw] text-white leading-[0.87] 2xl:leading-[0.9] tracking-[-4px] 2xl:tracking-normal">
                                     <div className="flex justify-between">
                                         {/* 1.166 -> 1.400: xong dash
-                                -> 1500: close xong
-                                1600: start wavy
-                                2333: i letter disapear */}
+                                        -> 1500: close xong
+                                        1600: start wavy
+                                        2333: i letter disapear */}
                                         <div
                                             className={
                                                 z === 3 ? "wavy close-reverse" : ""
@@ -466,12 +425,7 @@ export default function App() {
                             <div
                                 className={`bg-[#A9B2A0] w-[43.9vw] h-screen absolute left-[50vw] top-[-50vh] 2xl:px-9 p-6 2xl:py-8`}
                                 style={{
-                                    animation:
-                                        // active === 2 ? "slideLeft 2000ms both 1000ms" :
-                                        //     "slideRight 2000ms both"
-                                        (active === 2 && "slideLeft 966ms both 1500ms")
-                                    // "slideLeft 2000ms"
-                                    ,
+                                    animation: (active === 2 && "slideLeft 966ms both 1500ms"),
                                 }}
                             >
                                 {/* 9.800 -> 11.300: animation xong chính diện = 1500
@@ -529,11 +483,10 @@ export default function App() {
                         </Html>
                     </mesh>
                     <Suspense fallback={null}>
-                        {/* change 1 to z when everything is done */}
                         <mesh position={[0.2, -1.5, 3]}>
                             <Scene active={active} close={close} />
                         </mesh>
-                        {/* <OrbitControls /> */}
+
                         {/* light from the bottom left corner */}
                         {active === 2 ?
                             <SpotLight
@@ -568,7 +521,6 @@ export default function App() {
 
                         {active === 2 ?
                             <SpotLight
-                                // position={[-2.5, -0.1, 4]}
                                 position={[0, 0, 0]}
                                 castShadow
                                 penumbra={1}
@@ -584,7 +536,6 @@ export default function App() {
                             :
                             <SpotLight
                                 position={[-2.5, -0.1, 4]}
-                                // position={[0, 0, 0]}
                                 castShadow
                                 penumbra={1}
                                 radiusTop={5}
@@ -613,22 +564,6 @@ export default function App() {
                             opacity={0.2}
                             focus={1}
                         />
-                        {/* {active === 2 ?
-                        :
-                        <SpotLight
-                            position={[3, 3, 3]}
-                            castShadow
-                            penumbra={1}
-                            radiusTop={5}
-                            radiusBottom={5}
-                            distance={5}
-                            angle={0.15}
-                            attenuation={30}
-                            anglePower={5}
-                            intensity={2}
-                            opacity={0.2}
-                        />
-                    } */}
                         <Physics>
                             <Floor
                                 position={[0, -1.5, 0]}
@@ -643,11 +578,8 @@ export default function App() {
                         </Physics>
                     </Suspense>
                 </Canvas>
-
             </div >
-
             <Loader active={abc} progress={progress} />
-
         </>
     );
 }
