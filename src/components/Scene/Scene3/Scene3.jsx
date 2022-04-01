@@ -3,7 +3,7 @@ import { Html } from "@react-three/drei";
 
 import "./scene3.css";
 
-export default function Scene3({ active, setActive, setClose }) {
+export default function Scene3({ active, setActive }) {
     return (
         <Html>
             <div
@@ -34,7 +34,6 @@ export default function Scene3({ active, setActive, setClose }) {
                     </div>
                     <div
                         onClick={() => {
-                            setClose("close");
                             setActive(3);
                         }}
                         style={{
