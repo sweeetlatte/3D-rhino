@@ -1,19 +1,18 @@
+import "./styles.css";
+import "./input.css";
 import { useState, useEffect } from "react";
 import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/cannon";
-import { useProgress } from "@react-three/drei";
+import { useProgress, Html } from "@react-three/drei";
 
-import "./styles.css";
-import "./input.css";
-
-import Loader from "./utils/Loader/Loader";
-import Floor from "./components/Floor/Floor";
-import Model from "./Model/Model";
-import Light from "./components/Light/Light";
-import Scene1 from "./components/Scene/Scene1/Scene1";
-import Scene2 from "./components/Scene/Scene2/Scene2";
-import Scene3 from "./components/Scene/Scene3/Scene3";
+import Loader from "./Loader/Loader";
+import Floor from "./Floor/Floor";
+import Scene from "./Model/Scene";
+import Light from "./Light/Light";
+import Scene1 from "./Scene/Scene1/Scene1";
+import Scene2 from "./Scene/Scene2/Scene2";
+import Scene3 from "./Scene/Scene3/Scene3";
 
 export default function App() {
     const { active: abc, progress } = useProgress();
@@ -27,6 +26,7 @@ export default function App() {
     const [z, setZ] = useState(1);
     const [display, setDisplay] = useState("hidden");
     const [reverse, setReverse] = useState(null);
+    const [close, setClose] = useState(null);
 
     function delayAnimate() {
         setTimeout(function () {
@@ -76,18 +76,21 @@ export default function App() {
                 >
                     {count() &&
                         <mesh>
-                            <Scene1 z={z} setZ={setZ} delayAnimate={delayAnimate} />
+                            <Html scale={1} position={[-7, 1.7, 0]}>
+
+                                <Scene1 z={z} setZ={setZ} delayAnimate={delayAnimate} />
+                            </Html>
                         </mesh>
                     }
                     <mesh>
                         <Scene2 display={display} reverse={reverse} setReverse={setReverse} setActive={setActive} />
                     </mesh>
                     <mesh>
-                        <Scene3 active={active} setActive={setActive} />
+                        <Scene3 active={active} setActive={setActive} setClose={setClose} />
                     </mesh>
                     <Suspense fallback={null}>
                         <mesh position={[0.2, -1.5, 3]}>
-                            <Model active={active} />
+                            <Scene active={active} />
                         </mesh>
                         <Light active={active} />
                         <Physics>

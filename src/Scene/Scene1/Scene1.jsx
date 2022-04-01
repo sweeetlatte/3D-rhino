@@ -1,11 +1,12 @@
 import React from "react";
 import { Html } from "@react-three/drei";
 
+import "../../input.css";
 import "./scene1.css";
 
 export default function Scene1({ z, setZ, delayAnimate }) {
     return (
-        <Html scale={1} position={[-7, 1.7, 0]}>
+        <>
             <div className="text-[160px] 2xl:text-[216px] w-[85.1vw] 1xl:w-[80.1vw] 2xl:w-[86vw] text-white leading-[0.87] 2xl:leading-[0.9] tracking-[-4px] 2xl:tracking-normal">
                 <div className="flex justify-between">
                     {/* 1.166 -> 1.400: xong dash
@@ -73,6 +74,6 @@ export default function Scene1({ z, setZ, delayAnimate }) {
                     EXPLORE
                 </div>
             </div>
-        </Html>
+        </>
     );
 }

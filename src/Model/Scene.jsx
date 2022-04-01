@@ -5,7 +5,7 @@ import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { useFrame } from "@react-three/fiber";
 
 
-export default function Model({ active }) {
+export default function Scene({ active }) {
     const materials = useLoader(MTLLoader, "rhino.mtl");
     const obj = useLoader(OBJLoader, "rhino.obj", (loader) => {
         materials.preload();
